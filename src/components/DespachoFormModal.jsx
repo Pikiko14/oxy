@@ -174,7 +174,7 @@ function DespachoFormModal({ open, onClose, initialData = null, onSave }) {
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle sx={{ px: { xs: 2.8, sm: 3.2 }, pt: 2.2, pb: 1.1 }}>
-        {isEditing ? "Editar Despacho" : "Agregar Despacho"}
+        {isEditing ? "Editar Delivery" : "Agregar Delivery"}
       </DialogTitle>
       <DialogContent sx={{ px: { xs: 2.8, sm: 3.2 }, pt: 1.2, pb: 2.4 }}>
         <Stepper activeStep={activeStep} sx={{ mb: 3, mt: 1 }}>
@@ -219,14 +219,24 @@ function DespachoFormModal({ open, onClose, initialData = null, onSave }) {
                   <MenuItem value="DESCARGA">DESCARGA</MenuItem>
                 </Select>
               </FormControl>
-              <TextField
-                label="Producto"
-                value={formData.product}
-                onChange={(event) => handleChange("product", event.target.value)}
-                size="small"
-                fullWidth
-                required
-              />
+              <FormControl fullWidth size="small" required>
+                <InputLabel id="product-label">Producto</InputLabel>
+                <Select
+                  labelId="product-label"
+                  label="Producto"
+                  value={formData.product}
+                  onChange={(event) => handleChange("product", event.target.value)}
+                >
+                  <MenuItem value="SODA CAUSTICA">SODA CAUSTICA</MenuItem>
+                  <MenuItem value="HIPOCLORITO DE SODIO">HIPOCLORITO DE SODIO</MenuItem>
+                  <MenuItem value="A CLORHIDRICO">A CLORHIDRICO</MenuItem>
+                  <MenuItem value="CLORURO FERRICO">CLORURO FERRICO</MenuItem>
+                  <MenuItem value="CALCIO TUR">CALCIO TUR</MenuItem>
+                  <MenuItem value="CALCIO REFI">CALCIO REFI</MenuItem>
+                  <MenuItem value="A SULFURICO DILUIDO">A SULFURICO DILUIDO</MenuItem>
+                  <MenuItem value="CLORO">CLORO</MenuItem>
+                </Select>
+              </FormControl>
               <TextField
                 label="Patente"
                 value={formData.plate}

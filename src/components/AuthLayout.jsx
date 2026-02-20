@@ -48,7 +48,7 @@ function AuthLayout({
         }}
       />
 
-      <Container maxWidth="sm" sx={{ position: "relative", zIndex: 1 }}>
+      <Container maxWidth={false} sx={{ position: "relative", zIndex: 1, maxWidth: 480 }}>
         <Paper
           elevation={0}
           sx={{
@@ -58,6 +58,7 @@ function AuthLayout({
             backdropFilter: "blur(10px)",
             backgroundColor: "rgba(255,255,255,0.82)",
             boxShadow: "0px 24px 50px rgba(15,23,42,0.08)",
+            width: "100%",
           }}
         >
           <Stack spacing={2.25}>

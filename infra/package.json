@@ -1,0 +1,27 @@
+{
+  "name": "front-infra",
+  "version": "1.0.0",
+  "description": "CDK infrastructure for frontend deployment",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "node node_modules/aws-cdk/bin/cdk",
+    "deploy": "node node_modules/aws-cdk/bin/cdk deploy --profile 975050028915_AdministratorAccess",
+    "deploy:prod": "node node_modules/aws-cdk/bin/cdk deploy --profile 975050028915_AdministratorAccess --context env=production",
+    "deploy:dev": "node node_modules/aws-cdk/bin/cdk deploy --profile 975050028915_AdministratorAccess --context env=development",
+    "synth": "node node_modules/aws-cdk/bin/cdk synth",
+    "diff": "node node_modules/aws-cdk/bin/cdk diff",
+    "destroy": "node node_modules/aws-cdk/bin/cdk destroy --profile 975050028915_AdministratorAccess"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.150.0",
+    "constructs": "^10.3.0",
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "aws-cdk": "^2.150.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.4.5"
+  }
+}

@@ -3,11 +3,18 @@ import {
   Box,
   Button,
   Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
   Grid,
   IconButton,
   Paper,
   Stack,
+  Step,
+  StepLabel,
+  Stepper,
   Table,
   TableBody,
   TableCell,
@@ -19,7 +26,7 @@ import {
 } from "@mui/material";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import Print from "@mui/icons-material/Print";
-import Edit from "@mui/icons-material/Edit";
+import BookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import Message from "@mui/icons-material/Message";
 import Call from "@mui/icons-material/Call";
 import ReportProblem from "@mui/icons-material/ReportProblem";
@@ -33,26 +40,42 @@ import DirectionsCar from "@mui/icons-material/DirectionsCar";
 import Description from "@mui/icons-material/Description";
 import History from "@mui/icons-material/History";
 import CheckCircle from "@mui/icons-material/CheckCircle";
-import Cancel from "@mui/icons-material/Cancel";
 import Schedule from "@mui/icons-material/Schedule";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+import Refresh from "@mui/icons-material/Refresh";
+import Warning from "@mui/icons-material/Warning";
+import Visibility from "@mui/icons-material/Visibility";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { brandColors } from "../../theme";
-import DespachoFormModal from "../../components/DespachoFormModal";
 
 // ============================================
 // DATOS MOCK
 // ============================================
 
 const detailMock = {
+  // Identificadores y estado PDOP
+  deliveryNumber: "80012345",
+  reservationNumber: "RES-100045",
+  processStatus: "PESAJE_INICIAL",
+  processTimestamps: {
+    DISPONIBLE: "2025-03-16 07:45",
+    EN_TRANSITO: "2025-03-16 08:10",
+    INGRESO_APROBADO: "2025-03-16 08:25",
+    PESAJE_INICIAL: "2025-03-16 08:35",
+    CARGANDO: "2025-03-16 09:00",
+    CARGA_COMPLETADA: "2025-03-16 10:10",
+    PESAJE_FINAL: "",
+    SALIDA_APROBADA: "",
+  },
+
   status: "En Ruta",
   updatedAt: "10:45 AM",
   updatedAgo: "hace 15 min",
   dispatchId: "#843295",
   departureDate: "23 Octubre, 2023 - 08:30 AM",
   eta: "23 Octubre, 2023 - 10:45 AM",
-  loadType: "ISOPROPANOL",
+  loadType: "SODA CAUSTICA",
   origin: "Planta Oxy Santiago",
   originAddress: "Av. Las Industrias 1200, Quilicura",
   destination: "Hospital El Salvador",
@@ -84,10 +107,44 @@ const detailMock = {
     { title: "Cambio de ruta", time: "10:15 AM", description: "El conductor ha tomado una ruta alternativa para evitar el tráfico." },
   ],
   documents: [
-    { name: "Guía de Despacho", code: "#GD-542187" },
+    { name: "Guía de Delivery", code: "#GD-542187" },
     { name: "Manifiesto de Carga", code: "#MC-98732" },
     { name: "Certificado de Calidad", code: "#CC-342156" },
     { name: "Orden de Compra", code: "#OC-76543" },
+  ],
+  observacionesOperativas: [
+    { fecha: "2025-03-16 14:30", usuario: "Romanero OXY", texto: "Retraso en la carga debido a verificación de calidad adicional" },
+    { fecha: "2025-03-16 15:00", usuario: "Operador OXY", texto: "Documentación completa verificada" },
+  ],
+  validacionesPDOP: [
+    { campo: "Peso Neto", valor: "5,000 kg", estado: "Válido", requiereCorreccion: false },
+    { campo: "Concentración", valor: "99.5%", estado: "Válido", requiereCorreccion: false },
+    { campo: "Temperatura", valor: "25°C", estado: "Fuera de rango", requiereCorreccion: true },
+    { campo: "Documentación", valor: "Completa", estado: "Válido", requiereCorreccion: false },
+  ],
+  items: [
+    {
+      itemNumber: "10",
+      material: "SODA CAUSTICA",
+      quantity: "5,000",
+      unit: "kg",
+      lot: "LOT-2025-04-23-A",
+      productionDate: "2025-04-23",
+    },
+  ],
+  weighingEvents: [
+    {
+      type: "ENTRADA",
+      weight: "18,500 kg",
+      datetime: "2025-03-16 08:35",
+      source: "PESAMATIC",
+    },
+    {
+      type: "SALIDA",
+      weight: "26,500 kg",
+      datetime: "",
+      source: "PESAMATIC",
+    },
   ],
 };
 
@@ -405,86 +462,21 @@ function DetalleDespachoPage() {
   const { actNumber } = useParams();
   const d = detailMock;
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [reservationModalOpen, setReservationModalOpen] = useState(false);
 
-  // Convertir detailMock al formato esperado por el modal
-  const getDispatchDataForModal = () => {
-    // Función auxiliar para convertir fechas de forma segura
-    const safeDateParse = (dateString) => {
-      if (!dateString) return "";
-      try {
-        // Intentar parsear la fecha en formato "DD Mes, YYYY" o similar
-        const date = new Date(dateString);
-        if (isNaN(date.getTime())) return "";
-        return date.toISOString().split("T")[0];
-      } catch (error) {
-        return "";
-      }
-    };
+  const PDOP_STEPS = [
+    "DISPONIBLE",
+    "EN_TRANSITO",
+    "INGRESO_APROBADO",
+    "PESAJE_INICIAL",
+    "CAPTURA_DIGITAL",
+    "CARGANDO",
+    "CARGA_COMPLETADA",
+    "PESAJE_FINAL",
+    "SALIDA_APROBADA",
+  ];
 
-    // Extraer fecha y hora de departureDate de forma segura
-    const departureParts = d.departureDate ? d.departureDate.split(" - ") : [];
-    const departureDateStr = departureParts[0] || "";
-    const departureTimeStr = departureParts[1] || "";
-
-    // Extraer fecha y hora de eta de forma segura
-    const etaParts = d.eta ? d.eta.split(" - ") : [];
-    const etaDateStr = etaParts[0] || "";
-    const etaTimeStr = etaParts[1] || "";
-
-    return {
-      actNumber: d.dispatchId ? d.dispatchId.replace("#", "") : "",
-      company: "TRANSPORTES OSORIO", // Mock, debería venir de los datos reales
-      driver: d.driver?.name || "",
-      movement: "CARGA", // Mock
-      product: d.loadType || "",
-      plate: d.vehicle?.plate || "",
-      status: d.status || "En Atención",
-      region: "Centro", // Mock
-      origin: d.origin || "",
-      originAddress: d.originAddress || "",
-      destination: d.destination || "",
-      destinationAddress: d.destinationAddress || "",
-      distance: d.distance || "",
-      departureDate: safeDateParse(departureDateStr),
-      departureTime: departureTimeStr,
-      eta: safeDateParse(etaDateStr),
-      etaTime: etaTimeStr,
-      driverCode: d.driver?.code || "",
-      driverPhone: d.driver?.phone || "",
-      driverExperience: d.driver?.experience || "",
-      driverLicense: d.driver?.license || "",
-      driverRest: d.driver?.rest || "",
-      vehicleType: d.vehicle?.type || "",
-      vehicleModel: d.vehicle?.model || "",
-      vehicleYear: d.vehicle?.year || "",
-      vehicleCapacity: d.vehicle?.capacity || "",
-      vehicleMaintenance: d.vehicle?.maintenance ? safeDateParse(d.vehicle.maintenance) : "",
-      vehicleTechnicalStatus: d.vehicle?.technicalStatus || "",
-      loadQuantity: "5000", // Mock
-      loadUnit: "kg",
-      loadLot: "LOT-2025-04-23-A", // Mock
-      loadProductionDate: "", // Mock
-      arrival: "08:30", // Mock
-      attention: "09:15", // Mock
-      departure: "10:45", // Mock
-      durationMin: "94", // Mock
-    };
-  };
-
-  const handleOpenEditModal = () => {
-    setDialogOpen(true);
-  };
-
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
-  };
-
-  const handleSaveDispatch = (formData, initialData) => {
-    // Aquí se guardarían los cambios en el backend
-    console.log("Guardando cambios:", formData);
-    // Por ahora solo cerramos el modal
-  };
+  const activeStepIndex = Math.max(PDOP_STEPS.indexOf(d.processStatus || "DISPONIBLE"), 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -497,6 +489,20 @@ function DetalleDespachoPage() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleCopy = (value) => {
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).catch(() => {});
+    } else {
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
   };
 
   return (
@@ -529,9 +535,9 @@ function DetalleDespachoPage() {
             </Tooltip>
             <Box>
               <Typography variant="h5" sx={{ fontWeight: 800, color: brandColors.midnightBlue, lineHeight: 1.2 }}>
-                Despacho {d.dispatchId}
+                Delivery {d.dispatchId}
               </Typography>
-              <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mt: 0.5 }}>
+              <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mt: 0.5, flexWrap: "wrap" }}>
                 <Chip label={d.status} sx={{ bgcolor: "#BCE8D2", color: "#0E5E46", fontWeight: 700, height: 26 }} />
                 <Typography variant="caption" color="text.secondary">
                   {d.updatedAt} ({d.updatedAgo})
@@ -552,42 +558,67 @@ function DetalleDespachoPage() {
                 <Print />
               </IconButton>
             </Tooltip>
-            <Tooltip title={dialogOpen ? "Cerrar" : "Editar"} arrow placement="top">
+            <Tooltip title="Generar reserva" arrow placement="top">
               <IconButton
                 size="medium"
                 color="primary"
-                onClick={dialogOpen ? handleCloseDialog : handleOpenEditModal}
+                onClick={() => setReservationModalOpen(true)}
                 sx={{
-                  bgcolor: dialogOpen ? "error.main" : "primary.main",
+                  bgcolor: "primary.main",
                   color: "white",
                   border: "1px solid",
-                  borderColor: dialogOpen ? "error.main" : "primary.main",
+                  borderColor: "primary.main",
                   "&:hover": {
-                    bgcolor: dialogOpen ? "error.dark" : "primary.dark",
-                    borderColor: dialogOpen ? "error.dark" : "primary.dark",
+                    bgcolor: "primary.dark",
+                    borderColor: "primary.dark",
                   },
                 }}
               >
-                {dialogOpen ? <Cancel /> : <Edit />}
+                <BookmarkBorder />
               </IconButton>
             </Tooltip>
           </Stack>
         </Stack>
       </Paper>
 
+      {/* Timeline de estados PDOP */}
+      <InfoCard title="Flujo PDOP del Delivery" icon={<History fontSize="small" />}>
+        <Stepper activeStep={activeStepIndex} alternativeLabel sx={{ px: { xs: 0, sm: 1 } }}>
+          {PDOP_STEPS.map((stepKey) => (
+            <Step key={stepKey}>
+              <StepLabel
+                optional={
+                  d.processTimestamps[stepKey] ? (
+                    <Typography variant="caption" sx={{ fontFamily: "monospace" }}>
+                      {d.processTimestamps[stepKey]}
+                    </Typography>
+                  ) : undefined
+                }
+              >
+                <Typography variant="caption" sx={{ textTransform: "capitalize" }}>
+                  {stepKey.replace(/_/g, " ").toLowerCase()}
+                </Typography>
+              </StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </InfoCard>
+
       {/* Estadísticas rápidas */}
       <Grid container spacing={2}>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <StatCard icon={<AccessTime fontSize="small" />} label="Fecha Salida" value={d.departureDate.split(" - ")[0]} color={brandColors.oxyBlue} />
+        <Grid size={{ xs: 6, sm: 4 }}>
+          <StatCard icon={<Description fontSize="small" />} label="Delivery SAP" value={d.deliveryNumber} color={brandColors.oxyBlue} />
         </Grid>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <StatCard icon={<AccessTime fontSize="small" />} label="ETA" value={d.eta.split(" - ")[1]} color={brandColors.oceanAqua} />
+        <Grid size={{ xs: 6, sm: 4 }}>
+          <StatCard
+            icon={<ReportProblem fontSize="small" />}
+            label="Estado PDOP"
+            value={d.processStatus.replace(/_/g, " ")}
+            color={brandColors.sunriseOrange}
+          />
         </Grid>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <StatCard icon={<LocalShipping fontSize="small" />} label="Carga" value={d.loadType} color={brandColors.dayBlue} />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <StatCard icon={<Place fontSize="small" />} label="Distancia" value={d.distance} color={brandColors.sunriseOrange} />
+        <Grid size={{ xs: 6, sm: 4 }}>
+          <StatCard icon={<AccessTime fontSize="small" />} label="Fecha Salida" value={d.departureDate.split(" - ")[0]} color={brandColors.dayBlue} />
         </Grid>
       </Grid>
 
@@ -605,8 +636,8 @@ function DetalleDespachoPage() {
               distance={d.distance}
             />
 
-            {/* Carga */}
-            <InfoCard title="Detalles de la Carga" icon={<LocalShipping fontSize="small" />}>
+            {/* Ítems del Delivery */}
+            <InfoCard title="Ítems del Delivery" icon={<LocalShipping fontSize="small" />}>
               <TableContainer
                 sx={{
                   border: "1px solid",
@@ -617,23 +648,53 @@ function DetalleDespachoPage() {
                 <Table size="small">
                   <TableHead>
                     <TableRow sx={{ bgcolor: `${brandColors.morningBlue}08` }}>
-                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", md: "table-cell" } }}>PRODUCTO</TableCell>
-                      <TableCell sx={{ fontWeight: 700 }}>PRODUCTO</TableCell>
-                      <TableCell sx={{ fontWeight: 700 }}>CANTIDAD</TableCell>
-                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", sm: "table-cell" } }}>UNIDAD</TableCell>
-                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", lg: "table-cell" } }}>LOTE</TableCell>
-                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", lg: "table-cell" } }}>FECHA PRODUCCIÓN</TableCell>
+                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", md: "table-cell" } }}>ITEM</TableCell>
+                      <TableCell sx={{ fontWeight: 700 }}>Material</TableCell>
+                      <TableCell sx={{ fontWeight: 700 }}>Cantidad</TableCell>
+                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", sm: "table-cell" } }}>Unidad</TableCell>
+                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", lg: "table-cell" } }}>Lote</TableCell>
+                      <TableCell sx={{ fontWeight: 700, display: { xs: "none", lg: "table-cell" } }}>Fecha Producción</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
+                    {d.items.map((item) => (
+                      <TableRow key={item.itemNumber}>
+                        <TableCell sx={{ fontFamily: "monospace", fontWeight: 600, display: { xs: "none", md: "table-cell" } }}>
+                          {item.itemNumber}
+                        </TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>{item.material}</TableCell>
+                        <TableCell>{item.quantity}</TableCell>
+                        <TableCell sx={{ display: { xs: "none", sm: "table-cell" } }}>{item.unit}</TableCell>
+                        <TableCell sx={{ fontFamily: "monospace", display: { xs: "none", lg: "table-cell" } }}>{item.lot}</TableCell>
+                        <TableCell sx={{ display: { xs: "none", lg: "table-cell" } }}>{item.productionDate}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </InfoCard>
+
+            {/* Pesajes */}
+            <InfoCard title="Pesajes PESAMATIC / Báscula" icon={<LocalShipping fontSize="small" />}>
+              <TableContainer>
+                <Table size="small">
+                  <TableHead>
                     <TableRow>
-                      <TableCell sx={{ fontWeight: 600, display: { xs: "none", md: "table-cell" } }}>ISOPROPANOL</TableCell>
-                      <TableCell sx={{ fontWeight: 600 }}>ISOPROPANOL</TableCell>
-                      <TableCell>5,000</TableCell>
-                      <TableCell sx={{ display: { xs: "none", sm: "table-cell" } }}>kg</TableCell>
-                      <TableCell sx={{ fontFamily: "monospace", display: { xs: "none", lg: "table-cell" } }}>LOT-2025-04-23-A</TableCell>
-                      <TableCell sx={{ display: { xs: "none", lg: "table-cell" } }}>23 Abril, 2025</TableCell>
+                      <TableCell sx={{ fontWeight: 700 }}>Tipo</TableCell>
+                      <TableCell sx={{ fontWeight: 700 }}>Peso</TableCell>
+                      <TableCell sx={{ fontWeight: 700 }}>Fecha y Hora</TableCell>
+                      <TableCell sx={{ fontWeight: 700 }}>Origen</TableCell>
                     </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {d.weighingEvents.map((w, idx) => (
+                      <TableRow key={`${w.type}-${idx}`}>
+                        <TableCell>{w.type === "ENTRADA" ? "Entrada" : "Salida"}</TableCell>
+                        <TableCell sx={{ fontFamily: "monospace" }}>{w.weight}</TableCell>
+                        <TableCell sx={{ fontFamily: "monospace" }}>{w.datetime || "-"}</TableCell>
+                        <TableCell>{w.source}</TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -678,100 +739,6 @@ function DetalleDespachoPage() {
                   </Grid>
                 ))}
               </Grid>
-            </InfoCard>
-
-            {/* Mapa */}
-            <InfoCard title="Seguimiento en Tiempo Real" icon={<Place fontSize="small" />}>
-              <Box
-                sx={{
-                  borderRadius: 2.5,
-                  overflow: "hidden",
-                  height: 400,
-                  bgcolor: "#cde6ff",
-                  position: "relative",
-                  border: "2px solid",
-                  borderColor: brandColors.dayBlue + "40",
-                  boxShadow: `0px 8px 24px ${brandColors.dayBlue}20`,
-                }}
-              >
-                <Box
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(90deg, rgba(46,123,201,0.28) 0%, rgba(255,255,255,0) 40%), url('https://tile.openstreetmap.org/5/10/12.png') center/cover no-repeat",
-                  }}
-                />
-                <Paper
-                  sx={{
-                    position: "absolute",
-                    left: 20,
-                    bottom: 20,
-                    p: 2,
-                    borderRadius: 2.5,
-                    boxShadow: "0px 6px 20px rgba(0,0,0,0.2)",
-                    bgcolor: "rgba(255,255,255,0.95)",
-                    backdropFilter: "blur(8px)",
-                  }}
-                >
-                  <Stack direction="row" spacing={1.5} alignItems="center">
-                    <Place sx={{ color: brandColors.dayBlue, fontSize: "1.5rem" }} />
-                    <Box>
-                      <Typography variant="body1" sx={{ fontWeight: 700, color: brandColors.midnightBlue }}>
-                        Posición actual
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
-                        Última actualización: 06:23 p.m.
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </Paper>
-              </Box>
-            </InfoCard>
-
-            {/* Eventos */}
-            <InfoCard title="Historial de Eventos" icon={<History fontSize="small" />}>
-              <Stack spacing={2.5}>
-                {d.events.map((event, index) => (
-                  <Stack key={event.title} direction="row" spacing={2}>
-                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                      <Avatar
-                        sx={{
-                          width: 44,
-                          height: 44,
-                          bgcolor: `${brandColors.dayBlue}20`,
-                          color: brandColors.dayBlue,
-                          border: `2px solid ${brandColors.dayBlue}40`,
-                        }}
-                      >
-                        <Place />
-                      </Avatar>
-                      {index < d.events.length - 1 && (
-                        <Box
-                          sx={{
-                            width: 2,
-                            flex: 1,
-                            bgcolor: "divider",
-                            minHeight: 40,
-                            mt: 1.5,
-                          }}
-                        />
-                      )}
-                    </Box>
-                    <Box sx={{ flex: 1, pb: index < d.events.length - 1 ? 2.5 : 0 }}>
-                      <Typography sx={{ fontWeight: 700, mb: 0.5, color: brandColors.midnightBlue }}>
-                        {event.title}
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, display: "block", mb: 0.8 }}>
-                        {event.time}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                        {event.description}
-                      </Typography>
-                    </Box>
-                  </Stack>
-                ))}
-              </Stack>
             </InfoCard>
           </Stack>
         </Grid>
@@ -853,124 +820,6 @@ function DetalleDespachoPage() {
               </Stack>
             </InfoCard>
 
-            {/* Acciones */}
-            <InfoCard title="Acciones">
-              <Grid container spacing={2}>
-                <Grid size={6}>
-                  <Tooltip title="Actualizar estado" arrow placement="top">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                      sx={{
-                        height: 64,
-                        borderRadius: 2.5,
-                        boxShadow: `0px 4px 12px ${brandColors.oxyBlue}30`,
-                        transition: "all 200ms ease",
-                        "&:hover": {
-                          transform: "translateY(-2px)",
-                          boxShadow: `0px 6px 16px ${brandColors.oxyBlue}40`,
-                        },
-                      }}
-                    >
-                      <Stack direction="column" spacing={0.5} alignItems="center">
-                        <Edit sx={{ fontSize: "1.5rem" }} />
-                        <Typography variant="caption" sx={{ fontWeight: 600, fontSize: "0.7rem", lineHeight: 1 }}>
-                          Actualizar
-                        </Typography>
-                      </Stack>
-                    </Button>
-                  </Tooltip>
-                </Grid>
-                <Grid size={6}>
-                  <Tooltip title="Registrar entrega" arrow placement="top">
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      fullWidth
-                      sx={{
-                        height: 64,
-                        borderRadius: 2.5,
-                        borderWidth: 2,
-                        borderColor: brandColors.oxyBlue,
-                        transition: "all 200ms ease",
-                        "&:hover": {
-                          bgcolor: `${brandColors.oxyBlue}10`,
-                          borderWidth: 2,
-                          transform: "translateY(-2px)",
-                          boxShadow: `0px 4px 12px ${brandColors.oxyBlue}20`,
-                        },
-                      }}
-                    >
-                      <Stack direction="column" spacing={0.5} alignItems="center">
-                        <CheckCircle sx={{ fontSize: "1.5rem", color: brandColors.oxyBlue }} />
-                        <Typography variant="caption" sx={{ fontWeight: 600, fontSize: "0.7rem", lineHeight: 1, color: brandColors.oxyBlue }}>
-                          Registrar
-                        </Typography>
-                      </Stack>
-                    </Button>
-                  </Tooltip>
-                </Grid>
-                <Grid size={6}>
-                  <Tooltip title="Cancelar despacho" arrow placement="top">
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      fullWidth
-                      sx={{
-                        height: 64,
-                        borderRadius: 2.5,
-                        borderWidth: 2,
-                        borderColor: brandColors.oxyRed,
-                        transition: "all 200ms ease",
-                        "&:hover": {
-                          bgcolor: `${brandColors.oxyRed}10`,
-                          borderWidth: 2,
-                          transform: "translateY(-2px)",
-                          boxShadow: `0px 4px 12px ${brandColors.oxyRed}20`,
-                        },
-                      }}
-                    >
-                      <Stack direction="column" spacing={0.5} alignItems="center">
-                        <Cancel sx={{ fontSize: "1.5rem", color: brandColors.oxyRed }} />
-                        <Typography variant="caption" sx={{ fontWeight: 600, fontSize: "0.7rem", lineHeight: 1, color: brandColors.oxyRed }}>
-                          Cancelar
-                        </Typography>
-                      </Stack>
-                    </Button>
-                  </Tooltip>
-                </Grid>
-                <Grid size={6}>
-                  <Tooltip title="Modificar horario" arrow placement="top">
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      fullWidth
-                      sx={{
-                        height: 64,
-                        borderRadius: 2.5,
-                        borderWidth: 2,
-                        borderColor: brandColors.oxyBlue,
-                        transition: "all 200ms ease",
-                        "&:hover": {
-                          bgcolor: `${brandColors.oxyBlue}10`,
-                          borderWidth: 2,
-                          transform: "translateY(-2px)",
-                          boxShadow: `0px 4px 12px ${brandColors.oxyBlue}20`,
-                        },
-                      }}
-                    >
-                      <Stack direction="column" spacing={0.5} alignItems="center">
-                        <Schedule sx={{ fontSize: "1.5rem", color: brandColors.oxyBlue }} />
-                        <Typography variant="caption" sx={{ fontWeight: 600, fontSize: "0.7rem", lineHeight: 1, color: brandColors.oxyBlue }}>
-                          Horario
-                        </Typography>
-                      </Stack>
-                    </Button>
-                  </Tooltip>
-                </Grid>
-              </Grid>
-            </InfoCard>
           </Stack>
         </Grid>
       </Grid>
@@ -1003,12 +852,54 @@ function DetalleDespachoPage() {
         </Tooltip>
       )}
 
-      <DespachoFormModal
-        open={dialogOpen}
-        onClose={handleCloseDialog}
-        initialData={getDispatchDataForModal()}
-        onSave={handleSaveDispatch}
-      />
+      {/* Modal de confirmación para generar reserva */}
+      <Dialog open={reservationModalOpen} onClose={() => setReservationModalOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle sx={{ fontWeight: 700, pb: 1 }}>Confirmar Generación de Reserva</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            ¿Estás seguro de que deseas generar una reserva para este delivery?
+          </Typography>
+          <Paper variant="outlined" sx={{ p: 2, bgcolor: "grey.50" }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+              Detalles del Delivery
+            </Typography>
+            <Stack spacing={0.8}>
+              <Stack direction="row" justifyContent="space-between">
+                <Typography variant="body2">Número de Delivery:</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>{d.dispatchId}</Typography>
+              </Stack>
+              <Stack direction="row" justifyContent="space-between">
+                <Typography variant="body2">Producto:</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>{d.loadType}</Typography>
+              </Stack>
+              <Stack direction="row" justifyContent="space-between">
+                <Typography variant="body2">Conductor:</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>{d.driver?.name || "-"}</Typography>
+              </Stack>
+              <Stack direction="row" justifyContent="space-between">
+                <Typography variant="body2">Vehículo:</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>{d.vehicle?.plate || "-"}</Typography>
+              </Stack>
+            </Stack>
+          </Paper>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 2.5, pt: 1.5 }}>
+          <Button onClick={() => setReservationModalOpen(false)} variant="outlined" color="inherit">
+            Cancelar
+          </Button>
+          <Button
+            onClick={() => {
+              console.log("Generar reserva para:", d.dispatchId);
+              setReservationModalOpen(false);
+            }}
+            variant="contained"
+            color="primary"
+            startIcon={<BookmarkBorder />}
+          >
+            Generar Reserva
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Stack>
   );
 }

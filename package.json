@@ -6,7 +6,14 @@
     "dev": "node ./node_modules/vite/bin/vite.js",
     "build": "node ./node_modules/vite/bin/vite.js build",
     "preview": "node ./node_modules/vite/bin/vite.js preview",
-    "lint": "node ./node_modules/eslint/bin/eslint.js ."
+    "lint": "node ./node_modules/eslint/bin/eslint.js .",
+    "deploy": "npm run build && cd infra && npm install && npm run deploy",
+    "deploy:prod": "npm run build && cd infra && npm install && npm run deploy:prod",
+    "deploy:dev": "npm run build && cd infra && npm install && npm run deploy:dev",
+    "infra:install": "cd infra && npm install",
+    "infra:synth": "cd infra && npm run synth",
+    "infra:diff": "cd infra && npm run diff",
+    "infra:destroy": "cd infra && npm run destroy"
   },
   "keywords": [],
   "author": "",
