@@ -107,10 +107,8 @@ const detailMock = {
     { title: "Cambio de ruta", time: "10:15 AM", description: "El conductor ha tomado una ruta alternativa para evitar el tráfico." },
   ],
   documents: [
-    { name: "Guía de Delivery", code: "#GD-542187" },
-    { name: "Manifiesto de Carga", code: "#MC-98732" },
-    { name: "Certificado de Calidad", code: "#CC-342156" },
-    { name: "Orden de Compra", code: "#OC-76543" },
+    { name: "Guía de despacho", code: "#GD-542187" },
+    { name: "Ticket de Pesado", code: "#TP-98732" },
   ],
   observacionesOperativas: [
     { fecha: "2025-03-16 14:30", usuario: "Romanero OXY", texto: "Retraso en la carga debido a verificación de calidad adicional" },
@@ -703,41 +701,43 @@ function DetalleDespachoPage() {
             {/* Documentos */}
             <InfoCard title="Documentos" icon={<Description fontSize="small" />}>
               <Grid container spacing={2}>
-                {d.documents.map((doc) => (
-                  <Grid key={doc.code} size={{ xs: 12, sm: 6 }}>
-                    <Paper
-                      variant="outlined"
-                      sx={{
-                        p: 2,
-                        borderRadius: 2,
-                        border: "1px solid",
-                        borderColor: "divider",
-                        transition: "all 200ms ease",
-                        "&:hover": {
-                          borderColor: brandColors.oxyBlue,
-                          bgcolor: `${brandColors.oxyBlue}05`,
-                          transform: "translateY(-2px)",
-                        },
-                      }}
-                    >
-                      <Stack direction="row" justifyContent="space-between" alignItems="center">
-                        <Stack spacing={0.3}>
-                          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: brandColors.midnightBlue }}>
-                            {doc.name}
-                          </Typography>
-                          <Typography variant="caption" color="text.secondary" sx={{ fontFamily: "monospace" }}>
-                            {doc.code}
-                          </Typography>
+                {d.documents
+                  .filter((doc) => doc.name === "Guía de despacho" || doc.name === "Ticket de Pesado")
+                  .map((doc) => (
+                    <Grid key={doc.code} size={{ xs: 12, sm: 6 }}>
+                      <Paper
+                        variant="outlined"
+                        sx={{
+                          p: 2,
+                          borderRadius: 2,
+                          border: "1px solid",
+                          borderColor: "divider",
+                          transition: "all 200ms ease",
+                          "&:hover": {
+                            borderColor: brandColors.oxyBlue,
+                            bgcolor: `${brandColors.oxyBlue}05`,
+                            transform: "translateY(-2px)",
+                          },
+                        }}
+                      >
+                        <Stack direction="row" justifyContent="space-between" alignItems="center">
+                          <Stack spacing={0.3}>
+                            <Typography variant="subtitle2" sx={{ fontWeight: 700, color: brandColors.midnightBlue }}>
+                              {doc.name}
+                            </Typography>
+                            <Typography variant="caption" color="text.secondary" sx={{ fontFamily: "monospace" }}>
+                              {doc.code}
+                            </Typography>
+                          </Stack>
+                          <Tooltip title="Descargar" arrow placement="top">
+                            <IconButton size="small" color="primary">
+                              <Download fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
                         </Stack>
-                        <Tooltip title="Descargar" arrow placement="top">
-                          <IconButton size="small" color="primary">
-                            <Download fontSize="small" />
-                          </IconButton>
-                        </Tooltip>
-                      </Stack>
-                    </Paper>
-                  </Grid>
-                ))}
+                      </Paper>
+                    </Grid>
+                  ))}
               </Grid>
             </InfoCard>
           </Stack>

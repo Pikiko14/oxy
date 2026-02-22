@@ -6,7 +6,6 @@ import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
 import Menu from "@mui/icons-material/Menu";
 import AssessmentOutlined from "@mui/icons-material/AssessmentOutlined";
 import BookmarkBorder from "@mui/icons-material/BookmarkBorder";
-import Description from "@mui/icons-material/Description";
 import Assessment from "@mui/icons-material/Assessment";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import DashboardHomePage from "./dashboard/DashboardHomePage";
@@ -15,7 +14,6 @@ import DetalleDespachoPage from "./dashboard/DetalleDespachoPage";
 import AuditoriaPage from "./dashboard/AuditoriaPage";
 import ReservasPage from "./dashboard/ReservasPage";
 import DetalleReservaPage from "./dashboard/DetalleReservaPage";
-import DocumentosPage from "./dashboard/DocumentosPage";
 import ReportesPage from "./dashboard/ReportesPage";
 import ChecklistPage from "./dashboard/ChecklistPage";
 import oxychemLogoWhite from "../assets/OXYCHEM_LOGO_WHITE_RGB.png";
@@ -26,7 +24,6 @@ const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard", path: "/dashboard", icon: <DashboardOutlined /> },
   { key: "reservas", label: "Reservas", path: "/dashboard/reservas", icon: <BookmarkBorder /> },
   { key: "despachos", label: "Delivery", path: "/dashboard/despachos", icon: <LocalShipping /> },
-  { key: "documentos", label: "Documentos", path: "/dashboard/documentos", icon: <Description /> },
   { key: "auditoria", label: "Auditoría", path: "/dashboard/auditoria", icon: <AssessmentOutlined /> },
   { key: "reportes", label: "Reportes", path: "/dashboard/reportes", icon: <Assessment /> },
 ];
@@ -36,7 +33,6 @@ const getPageTitle = (pathname) => {
   if (pathname.startsWith("/dashboard/despachos")) return "Panel de Delivery";
   if (pathname.startsWith("/dashboard/reservas/")) return "Detalle de Reserva";
   if (pathname.startsWith("/dashboard/reservas")) return "Reservas";
-  if (pathname.startsWith("/dashboard/documentos")) return "Documentos";
   if (pathname.startsWith("/dashboard/reportes")) return "Reportes";
   if (pathname.startsWith("/dashboard/auditoria")) return "Auditoría del Sistema";
   return "Dashboard de Delivery";
@@ -47,7 +43,6 @@ const getPageSubtitle = (pathname, userName) => {
   if (pathname.startsWith("/dashboard/despachos")) return "Gestión operativa de delivery";
   if (pathname.startsWith("/dashboard/reservas/")) return "Seguimiento operativo, documentos y acciones de la reserva";
   if (pathname.startsWith("/dashboard/reservas")) return "Gestión de reservas asociadas a deliveries";
-  if (pathname.startsWith("/dashboard/documentos")) return "Visualización y envío de documentos comerciales";
   if (pathname.startsWith("/dashboard/reportes")) return "Genera reportes personalizables con campos seleccionables";
   if (pathname.startsWith("/dashboard/auditoria")) return "Registro de movimientos y acciones realizadas en la aplicación";
   return `Vista operativa de hoy para ${userName}`;
@@ -248,7 +243,6 @@ function DashboardPage() {
             <Route path="despachos/:actNumber" element={<DetalleDespachoPage />} />
             <Route path="reservas" element={<ReservasPage />} />
             <Route path="reservas/:id" element={<DetalleReservaPage />} />
-            <Route path="documentos" element={<DocumentosPage />} />
             <Route path="reportes" element={<ReportesPage />} />
             <Route path="auditoria" element={<AuditoriaPage />} />
             <Route path="checklist" element={<ChecklistPage />} />

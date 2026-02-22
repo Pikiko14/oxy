@@ -1,0 +1,49 @@
+import { brandColors } from "../theme";
+
+/**
+ * Constantes y configuraciones para estados de delivery
+ */
+export const DELIVERY_STATUSES = {
+  EN_TRANSITO: "EN_TRANSITO",
+  INGRESO_APROBADO: "INGRESO_APROBADO",
+  PESAJE_INICIAL: "PESAJE_INICIAL",
+  CAPTURA_DIGITAL: "CAPTURA_DIGITAL",
+  CARGANDO: "CARGANDO",
+  CARGA_COMPLETADA: "CARGA_COMPLETADA",
+  PESAJE_FINAL: "PESAJE_FINAL",
+  SALIDA_APROBADA: "SALIDA_APROBADA",
+  COMPLETADO: "COMPLETADO",
+  NO_RECOGIDO: "No Recogido",
+};
+
+/**
+ * Configuración de estilos para cada estado de delivery
+ */
+export const DELIVERY_STATUS_STYLES = {
+  [DELIVERY_STATUSES.EN_TRANSITO]: { bg: "#FFFBEB", color: "#B45309" },
+  [DELIVERY_STATUSES.INGRESO_APROBADO]: { bg: "#DBEAFE", color: "#1E40AF" },
+  [DELIVERY_STATUSES.PESAJE_INICIAL]: { bg: "#EEF2FF", color: "#4338CA" },
+  [DELIVERY_STATUSES.CAPTURA_DIGITAL]: { bg: "#F3E8FF", color: "#7E22CE" },
+  [DELIVERY_STATUSES.CARGANDO]: { bg: "#FFEDD5", color: "#C2410C" },
+  [DELIVERY_STATUSES.CARGA_COMPLETADA]: { bg: "#D1FAE5", color: "#065F46" },
+  [DELIVERY_STATUSES.PESAJE_FINAL]: { bg: "#E0F7FA", color: "#006064" },
+  [DELIVERY_STATUSES.SALIDA_APROBADA]: { bg: "#D4EDDA", color: "#155724" },
+  [DELIVERY_STATUSES.COMPLETADO]: { bg: "#D4EDDA", color: "#155724" },
+  [DELIVERY_STATUSES.NO_RECOGIDO]: { bg: "#FEE2E2", color: "#991B1B" },
+};
+
+/**
+ * Etiquetas para mostrar en la UI
+ */
+export const DELIVERY_STATUS_LABELS = {
+  [DELIVERY_STATUSES.EN_TRANSITO]: "En Tránsito",
+  [DELIVERY_STATUSES.INGRESO_APROBADO]: "Ingreso Aprobado",
+  [DELIVERY_STATUSES.PESAJE_INICIAL]: "Pesaje Inicial",
+  [DELIVERY_STATUSES.CAPTURA_DIGITAL]: "Captura Digital",
+  [DELIVERY_STATUSES.CARGANDO]: "Cargando",
+  [DELIVERY_STATUSES.CARGA_COMPLETADA]: "Carga Completada",
+  [DELIVERY_STATUSES.PESAJE_FINAL]: "Pesaje Final",
+  [DELIVERY_STATUSES.SALIDA_APROBADA]: "Salida Aprobada",
+  [DELIVERY_STATUSES.COMPLETADO]: "Completado",
+  [DELIVERY_STATUSES.NO_RECOGIDO]: "No Recogido",
+};

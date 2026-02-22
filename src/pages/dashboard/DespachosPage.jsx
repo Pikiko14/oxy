@@ -46,18 +46,27 @@ import { useNavigate } from "react-router-dom";
 import { reservasRows } from "./ReservasPage";
 
 export const dispatchRows = [
-  { actNumber: "843295", company: "TRANSPORTES OSORIO", driver: "GEROLAMO GNETTI", movement: "CARGA", product: "SODA CAUSTICA", plate: "ABCD12", status: "Aprobado", arrival: "08:30", attention: "09:15", departure: "10:45", durationMin: 94, region: "Centro", deliveryDate: "16/02/2026", deliveryTime: "08:00", freightOrder: "6100047545", deliveryQuantity: "28,000 TO", openQuantity: "28,000 TO", mode: "Camión Cisterna", route: "Z000 No Transit Day", customerAddress: "OXIQUIM CORONEL CORONEL", carrierName: "INMOB E INVERS POLYKARPO S A", plantLocation: "1752", scheduledDate: "16/02/2026", material: "213874", hasReservation: false, aprobadoIngresoSAC: true },
-  { actNumber: "843298", company: "MERCOTANK CHILE", driver: "JORGE OLMOS", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "IJKL56", status: "Aprobado", arrival: "14:20", attention: "14:35", departure: "14:55", durationMin: 20, region: "Norte", deliveryDate: "17/02/2026", deliveryTime: "14:00", freightOrder: "6100047546", deliveryQuantity: "15,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z001 Norte Express", customerAddress: "QUIMICA DEL PACIFICO", carrierName: "MERCOTANK CHILE", plantLocation: "1752", scheduledDate: "17/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true },
-  { actNumber: "843301", company: "LOGISTICA SUR", driver: "CARLOS MENDOZA", movement: "CARGA", product: "A CLORHIDRICO", plate: "QRST90", status: "No Recogido", arrival: "11:00", attention: "11:30", departure: "-", durationMin: 45, region: "Sur", deliveryDate: "18/02/2026", deliveryTime: "11:00", freightOrder: "6100047547", deliveryQuantity: "22,000 TO", openQuantity: "22,000 TO", mode: "Camión Cisterna", route: "Z002 Sur Logistics", customerAddress: "INDUSTRIAS QUIMICAS SUR", carrierName: "LOGISTICA SUR", plantLocation: "1752", scheduledDate: "18/02/2026", material: "213876", hasReservation: false },
-  { actNumber: "843304", company: "TRANSPORTE NORTE", driver: "ROBERTO DIAZ", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "YZAB34", status: "Aprobado", arrival: "16:00", attention: "16:15", departure: "16:45", durationMin: 45, region: "Norte", deliveryDate: "19/02/2026", deliveryTime: "16:00", freightOrder: "6100047548", deliveryQuantity: "18,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z003 Norte Direct", customerAddress: "MINERA DEL NORTE", carrierName: "TRANSPORTE NORTE", plantLocation: "1752", scheduledDate: "19/02/2026", material: "213877", hasReservation: true, aprobadoIngresoSAC: true },
-  { actNumber: "843305", company: "LOGISTICA CENTRAL", driver: "MARIA GONZALEZ", movement: "CARGA", product: "CALCIO TUR", plate: "WXYZ78", status: "No Recogido", arrival: "09:30", attention: "09:45", departure: "-", durationMin: 75, region: "Centro", deliveryDate: "20/02/2026", deliveryTime: "09:30", freightOrder: "6100047549", deliveryQuantity: "12,000 TO", openQuantity: "12,000 TO", mode: "Camión Cisterna", route: "Z004 Centro Hub", customerAddress: "CONSTRUCCIONES CENTRAL", carrierName: "LOGISTICA CENTRAL", plantLocation: "1752", scheduledDate: "20/02/2026", material: "213878", hasReservation: false },
-  { actNumber: "843306", company: "TRANSPORTES DEL SUR", driver: "PEDRO LOPEZ", movement: "DESCARGA", product: "CALCIO REFI", plate: "EFGH12", status: "No Recogido", arrival: "10:15", attention: "10:30", departure: "-", durationMin: 150, region: "Sur", deliveryDate: "21/02/2026", deliveryTime: "10:00", freightOrder: "6100047550", deliveryQuantity: "25,000 TO", openQuantity: "25,000 TO", mode: "Camión Cisterna", route: "Z005 Sur Express", customerAddress: "REFINERIA DEL SUR", carrierName: "TRANSPORTES DEL SUR", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213879", hasReservation: false },
-  { actNumber: "843307", company: "MERCANCIA EXPRESS", driver: "CARLOS RUIZ", movement: "CARGA", product: "A SULFURICO DILUIDO", plate: "MNOP56", status: "Aprobado", arrival: "12:00", attention: "12:20", departure: "-", durationMin: 225, region: "Centro", deliveryDate: "22/02/2026", deliveryTime: "12:00", freightOrder: "6100047551", deliveryQuantity: "30,000 TO", openQuantity: "30,000 TO", mode: "Camión Cisterna", route: "Z006 Centro Express", customerAddress: "INDUSTRIAS QUIMICAS CENTRO", carrierName: "MERCANCIA EXPRESS", plantLocation: "1752", scheduledDate: "22/02/2026", material: "213880", hasReservation: true },
-  { actNumber: "843308", company: "FLOTA RAPIDA", driver: "JORGE MORALES", movement: "DESCARGA", product: "CLORO", plate: "UVWX90", status: "No Recogido", arrival: "13:45", attention: "14:00", departure: "-", durationMin: 80, region: "Centro", deliveryDate: "16/02/2026", deliveryTime: "13:30", freightOrder: "6100047552", deliveryQuantity: "8,500 TO", openQuantity: "8,500 TO", mode: "Camión Cisterna", route: "Z007 Centro Fast", customerAddress: "PLANTA TRATAMIENTO AGUA", carrierName: "FLOTA RAPIDA", plantLocation: "1752", scheduledDate: "16/02/2026", material: "213881", hasReservation: false },
-  { actNumber: "843309", company: "DISTRIBUCION BIOBIO", driver: "ANGELICA REYES", movement: "CARGA", product: "SODA CAUSTICA", plate: "LMNO21", status: "No Recogido", arrival: "17:10", attention: "-", departure: "-", durationMin: 0, region: "Sur", deliveryDate: "17/02/2026", deliveryTime: "17:00", freightOrder: "6100047553", deliveryQuantity: "20,000 TO", openQuantity: "20,000 TO", mode: "Camión Cisterna", route: "Z008 Sur BioBio", customerAddress: "PAPELERAS BIOBIO", carrierName: "DISTRIBUCION BIOBIO", plantLocation: "1752", scheduledDate: "17/02/2026", material: "213874", hasReservation: false },
-  { actNumber: "843310", company: "NORTE INDUSTRIAL", driver: "RENATO PIZARRO", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "QWER45", status: "Aprobado", arrival: "07:35", attention: "08:05", departure: "-", durationMin: 52, region: "Norte", deliveryDate: "18/02/2026", deliveryTime: "07:30", freightOrder: "6100047554", deliveryQuantity: "16,000 TO", openQuantity: "16,000 TO", mode: "Camión Cisterna", route: "Z009 Norte Industrial", customerAddress: "INDUSTRIAS DEL NORTE", carrierName: "NORTE INDUSTRIAL", plantLocation: "1752", scheduledDate: "18/02/2026", material: "213875", hasReservation: true },
-  { actNumber: "843311", company: "TRANS QUIMICA LTDA", driver: "PABLO MORA", movement: "CARGA", product: "A CLORHIDRICO", plate: "ASDF89", status: "Aprobado", arrival: "05:50", attention: "06:10", departure: "06:40", durationMin: 30, region: "Centro", deliveryDate: "19/02/2026", deliveryTime: "05:45", freightOrder: "6100047555", deliveryQuantity: "14,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z010 Centro Quimica", customerAddress: "QUIMICA INDUSTRIAL", carrierName: "TRANS QUIMICA LTDA", plantLocation: "1752", scheduledDate: "19/02/2026", material: "213876", hasReservation: true },
-  { actNumber: "843312", company: "RUTA SEGURA SPA", driver: "VALERIA NUNEZ", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "ZXCV34", status: "No Recogido", arrival: "15:05", attention: "15:20", departure: "-", durationMin: 68, region: "Norte", deliveryDate: "20/02/2026", deliveryTime: "15:00", freightOrder: "6100047556", deliveryQuantity: "19,000 TO", openQuantity: "19,000 TO", mode: "Camión Cisterna", route: "Z011 Norte Segura", customerAddress: "MINERIA SEGURA", carrierName: "RUTA SEGURA SPA", plantLocation: "1752", scheduledDate: "20/02/2026", material: "213877", hasReservation: false },
+  { actNumber: "843293", company: "TRANSPORTES DEL PACIFICO", driver: "LUIS MARTINEZ", movement: "CARGA", product: "SODA CAUSTICA", plate: "PAC123", status: "SALIDA_APROBADA", arrival: "09:00", attention: "09:20", departure: "11:00", durationMin: 120, region: "Centro", deliveryDate: "15/02/2026", deliveryTime: "09:00", freightOrder: "6100047543", deliveryQuantity: "24,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z000 No Transit Day", customerAddress: "INDUSTRIAS PACIFICO", carrierName: "TRANSPORTES DEL PACIFICO", plantLocation: "1752", scheduledDate: "15/02/2026", material: "213874", hasReservation: false, aprobadoIngresoSAC: true, fechaCreacion: "14/02/2026" },
+  { actNumber: "843294", company: "LOGISTICA ANDINA", driver: "ANA SILVA", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "AND456", status: "SALIDA_APROBADA", arrival: "14:00", attention: "14:15", departure: "14:50", durationMin: 50, region: "Norte", deliveryDate: "15/02/2026", deliveryTime: "14:00", freightOrder: "6100047544", deliveryQuantity: "18,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z001 Norte Express", customerAddress: "QUIMICA ANDINA", carrierName: "LOGISTICA ANDINA", plantLocation: "1752", scheduledDate: "15/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "14/02/2026" },
+  { actNumber: "843295", company: "TRANSPORTES OSORIO", driver: "GEROLAMO GNETTI", movement: "CARGA", product: "SODA CAUSTICA", plate: "ABCD12", status: "SALIDA_APROBADA", arrival: "08:30", attention: "09:15", departure: "10:45", durationMin: 94, region: "Centro", deliveryDate: "21/02/2026", deliveryTime: "08:00", freightOrder: "6100047545", deliveryQuantity: "28,000 TO", openQuantity: "28,000 TO", mode: "Camión Cisterna", route: "Z000 No Transit Day", customerAddress: "OXIQUIM CORONEL CORONEL", carrierName: "INMOB E INVERS POLYKARPO S A", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213874", hasReservation: false, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
+  { actNumber: "843298", company: "MERCOTANK CHILE", driver: "JORGE OLMOS", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "IJKL56", status: "SALIDA_APROBADA", arrival: "14:20", attention: "14:35", departure: "14:55", durationMin: 20, region: "Norte", deliveryDate: "17/02/2026", deliveryTime: "14:00", freightOrder: "6100047546", deliveryQuantity: "15,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z001 Norte Express", customerAddress: "QUIMICA DEL PACIFICO", carrierName: "MERCOTANK CHILE", plantLocation: "1752", scheduledDate: "17/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "16/02/2026" },
+  { actNumber: "843301", company: "LOGISTICA SUR", driver: "CARLOS MENDOZA", movement: "CARGA", product: "A CLORHIDRICO", plate: "QRST90", status: "EN_TRANSITO", arrival: "11:00", attention: "11:30", departure: "-", durationMin: 45, region: "Sur", deliveryDate: "18/02/2026", deliveryTime: "11:00", freightOrder: "6100047547", deliveryQuantity: "22,000 TO", openQuantity: "22,000 TO", mode: "Camión Cisterna", route: "Z002 Sur Logistics", customerAddress: "INDUSTRIAS QUIMICAS SUR", carrierName: "LOGISTICA SUR", plantLocation: "1752", scheduledDate: "18/02/2026", material: "213876", hasReservation: false, fechaCreacion: "17/02/2026" },
+  { actNumber: "843304", company: "TRANSPORTE NORTE", driver: "ROBERTO DIAZ", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "YZAB34", status: "SALIDA_APROBADA", arrival: "16:00", attention: "16:15", departure: "16:45", durationMin: 45, region: "Norte", deliveryDate: "19/02/2026", deliveryTime: "16:00", freightOrder: "6100047548", deliveryQuantity: "18,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z003 Norte Direct", customerAddress: "MINERA DEL NORTE", carrierName: "TRANSPORTE NORTE", plantLocation: "1752", scheduledDate: "19/02/2026", material: "213877", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "18/02/2026" },
+  { actNumber: "843305", company: "LOGISTICA CENTRAL", driver: "MARIA GONZALEZ", movement: "CARGA", product: "CALCIO TUR", plate: "WXYZ78", status: "EN_TRANSITO", arrival: "09:30", attention: "09:45", departure: "-", durationMin: 75, region: "Centro", deliveryDate: "20/02/2026", deliveryTime: "09:30", freightOrder: "6100047549", deliveryQuantity: "12,000 TO", openQuantity: "12,000 TO", mode: "Camión Cisterna", route: "Z004 Centro Hub", customerAddress: "CONSTRUCCIONES CENTRAL", carrierName: "LOGISTICA CENTRAL", plantLocation: "1752", scheduledDate: "20/02/2026", material: "213878", hasReservation: false, fechaCreacion: "19/02/2026" },
+  { actNumber: "843306", company: "TRANSPORTES DEL SUR", driver: "PEDRO LOPEZ", movement: "DESCARGA", product: "CALCIO REFI", plate: "EFGH12", status: "EN_TRANSITO", arrival: "10:15", attention: "10:30", departure: "-", durationMin: 150, region: "Sur", deliveryDate: "21/02/2026", deliveryTime: "10:00", freightOrder: "6100047550", deliveryQuantity: "25,000 TO", openQuantity: "25,000 TO", mode: "Camión Cisterna", route: "Z005 Sur Express", customerAddress: "REFINERIA DEL SUR", carrierName: "TRANSPORTES DEL SUR", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213879", hasReservation: false, fechaCreacion: "20/02/2026" },
+  { actNumber: "843307", company: "MERCANCIA EXPRESS", driver: "CARLOS RUIZ", movement: "CARGA", product: "A SULFURICO DILUIDO", plate: "MNOP56", status: "INGRESO_APROBADO", arrival: "12:00", attention: "12:20", departure: "-", durationMin: 225, region: "Centro", deliveryDate: "22/02/2026", deliveryTime: "12:00", freightOrder: "6100047551", deliveryQuantity: "30,000 TO", openQuantity: "30,000 TO", mode: "Camión Cisterna", route: "Z006 Centro Express", customerAddress: "INDUSTRIAS QUIMICAS CENTRO", carrierName: "MERCANCIA EXPRESS", plantLocation: "1752", scheduledDate: "22/02/2026", material: "213880", hasReservation: true, fechaCreacion: "21/02/2026" },
+  { actNumber: "843308", company: "FLOTA RAPIDA", driver: "JORGE MORALES", movement: "DESCARGA", product: "CLORO", plate: "UVWX90", status: "EN_TRANSITO", arrival: "13:45", attention: "14:00", departure: "-", durationMin: 80, region: "Centro", deliveryDate: "16/02/2026", deliveryTime: "13:30", freightOrder: "6100047552", deliveryQuantity: "8,500 TO", openQuantity: "8,500 TO", mode: "Camión Cisterna", route: "Z007 Centro Fast", customerAddress: "PLANTA TRATAMIENTO AGUA", carrierName: "FLOTA RAPIDA", plantLocation: "1752", scheduledDate: "16/02/2026", material: "213881", hasReservation: false, fechaCreacion: "15/02/2026" },
+  { actNumber: "843309", company: "DISTRIBUCION BIOBIO", driver: "ANGELICA REYES", movement: "CARGA", product: "SODA CAUSTICA", plate: "LMNO21", status: "EN_TRANSITO", arrival: "17:10", attention: "-", departure: "-", durationMin: 0, region: "Sur", deliveryDate: "17/02/2026", deliveryTime: "17:00", freightOrder: "6100047553", deliveryQuantity: "20,000 TO", openQuantity: "20,000 TO", mode: "Camión Cisterna", route: "Z008 Sur BioBio", customerAddress: "PAPELERAS BIOBIO", carrierName: "DISTRIBUCION BIOBIO", plantLocation: "1752", scheduledDate: "17/02/2026", material: "213874", hasReservation: false, fechaCreacion: "16/02/2026" },
+  { actNumber: "843310", company: "NORTE INDUSTRIAL", driver: "RENATO PIZARRO", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "QWER45", status: "SALIDA_APROBADA", arrival: "07:35", attention: "08:05", departure: "-", durationMin: 52, region: "Norte", deliveryDate: "18/02/2026", deliveryTime: "07:30", freightOrder: "6100047554", deliveryQuantity: "16,000 TO", openQuantity: "16,000 TO", mode: "Camión Cisterna", route: "Z009 Norte Industrial", customerAddress: "INDUSTRIAS DEL NORTE", carrierName: "NORTE INDUSTRIAL", plantLocation: "1752", scheduledDate: "18/02/2026", material: "213875", hasReservation: true, fechaCreacion: "17/02/2026" },
+  { actNumber: "843311", company: "TRANS QUIMICA LTDA", driver: "PABLO MORA", movement: "CARGA", product: "A CLORHIDRICO", plate: "ASDF89", status: "INGRESO_APROBADO", arrival: "05:50", attention: "06:10", departure: "06:40", durationMin: 30, region: "Centro", deliveryDate: "19/02/2026", deliveryTime: "05:45", freightOrder: "6100047555", deliveryQuantity: "14,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z010 Centro Quimica", customerAddress: "QUIMICA INDUSTRIAL", carrierName: "TRANS QUIMICA LTDA", plantLocation: "1752", scheduledDate: "19/02/2026", material: "213876", hasReservation: true, fechaCreacion: "18/02/2026" },
+  { actNumber: "843312", company: "RUTA SEGURA SPA", driver: "VALERIA NUNEZ", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "ZXCV34", status: "EN_TRANSITO", arrival: "15:05", attention: "15:20", departure: "-", durationMin: 68, region: "Norte", deliveryDate: "20/02/2026", deliveryTime: "15:00", freightOrder: "6100047556", deliveryQuantity: "19,000 TO", openQuantity: "19,000 TO", mode: "Camión Cisterna", route: "Z011 Norte Segura", customerAddress: "MINERIA SEGURA", carrierName: "RUTA SEGURA SPA", plantLocation: "1752", scheduledDate: "20/02/2026", material: "213877", hasReservation: false, fechaCreacion: "19/02/2026" },
+  { actNumber: "843313", company: "TRANSPORTES SABADO", driver: "FERNANDO CASTRO", movement: "CARGA", product: "SODA CAUSTICA", plate: "SAB789", status: "INGRESO_APROBADO", arrival: "10:00", attention: "10:15", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "21/02/2026", deliveryTime: "10:00", freightOrder: "6100047557", deliveryQuantity: "21,000 TO", openQuantity: "21,000 TO", mode: "Camión Cisterna", route: "Z012 Centro Sabado", customerAddress: "INDUSTRIAS SABADO", carrierName: "TRANSPORTES SABADO", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213874", hasReservation: false, fechaCreacion: "20/02/2026" },
+  { actNumber: "843314", company: "LOGISTICA FIN DE SEMANA", driver: "SOFIA RAMIREZ", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "FDS456", status: "EN_TRANSITO", arrival: "15:30", attention: "-", departure: "-", durationMin: 0, region: "Sur", deliveryDate: "21/02/2026", deliveryTime: "15:30", freightOrder: "6100047558", deliveryQuantity: "17,500 TO", openQuantity: "17,500 TO", mode: "Camión Cisterna", route: "Z013 Sur Weekend", customerAddress: "QUIMICA FIN DE SEMANA", carrierName: "LOGISTICA FIN DE SEMANA", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213875", hasReservation: false, fechaCreacion: "20/02/2026" },
+  { actNumber: "843315", company: "TRANSPORTES AVANZADOS", driver: "RICARDO VEGA", movement: "CARGA", product: "SODA CAUSTICA", plate: "AVZ789", status: "PESAJE_INICIAL", arrival: "08:00", attention: "08:15", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "21/02/2026", deliveryTime: "08:00", freightOrder: "6100047559", deliveryQuantity: "20,000 TO", openQuantity: "20,000 TO", mode: "Camión Cisterna", route: "Z014 Centro Avanzado", customerAddress: "INDUSTRIAS AVANZADAS", carrierName: "TRANSPORTES AVANZADOS", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
+  { actNumber: "843316", company: "DISTRIBUCION RAPIDA", driver: "MONICA TORRES", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "RPD123", status: "CARGANDO", arrival: "10:00", attention: "10:15", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "21/02/2026", deliveryTime: "10:00", freightOrder: "6100047560", deliveryQuantity: "15,000 TO", openQuantity: "15,000 TO", mode: "Camión Cisterna", route: "Z015 Norte Rapida", customerAddress: "QUIMICA RAPIDA", carrierName: "DISTRIBUCION RAPIDA", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
+  { actNumber: "843317", company: "FLOTA MODERNA", driver: "DIEGO SANTOS", movement: "CARGA", product: "A CLORHIDRICO", plate: "MOD456", status: "CARGA_COMPLETADA", arrival: "11:30", attention: "11:45", departure: "-", durationMin: 0, region: "Sur", deliveryDate: "21/02/2026", deliveryTime: "11:30", freightOrder: "6100047561", deliveryQuantity: "18,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z016 Sur Moderna", customerAddress: "INDUSTRIAS MODERNAS", carrierName: "FLOTA MODERNA", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213876", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
+  { actNumber: "843318", company: "LOGISTICA PRECISA", driver: "PATRICIA MORALES", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "PRC789", status: "PESAJE_FINAL", arrival: "13:00", attention: "13:15", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "21/02/2026", deliveryTime: "13:00", freightOrder: "6100047562", deliveryQuantity: "16,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z017 Centro Precisa", customerAddress: "MINERIA PRECISA", carrierName: "LOGISTICA PRECISA", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213877", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
+  { actNumber: "843319", company: "TRANSPORTES DIGITALES", driver: "ALEJANDRO CASTRO", movement: "CARGA", product: "SODA CAUSTICA", plate: "DIG321", status: "CAPTURA_DIGITAL", arrival: "09:00", attention: "09:20", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "21/02/2026", deliveryTime: "09:00", freightOrder: "6100047563", deliveryQuantity: "22,000 TO", openQuantity: "22,000 TO", mode: "Camión Cisterna", route: "Z018 Norte Digital", customerAddress: "INDUSTRIAS DIGITALES", carrierName: "TRANSPORTES DIGITALES", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
 ];
 
 function DespachosPage() {
@@ -68,6 +77,8 @@ function DespachosPage() {
   const [productFilter, setProductFilter] = useState([]);
   const [reservationFilter, setReservationFilter] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [fechaDesde, setFechaDesde] = useState("");
+  const [fechaHasta, setFechaHasta] = useState("");
   const [page, setPage] = useState(1);
   const [reservationModalOpen, setReservationModalOpen] = useState(false);
   const [selectedDelivery, setSelectedDelivery] = useState(null);
@@ -146,7 +157,14 @@ function DespachosPage() {
   };
 
   const statusStyle = {
-    "No Recogido": { bg: "#FEE2E2", color: "#991B1B" },
+    "EN_TRANSITO": { bg: "#FEF3C7", color: "#92400E" },
+    "INGRESO_APROBADO": { bg: "#DBEAFE", color: "#1E40AF" },
+    "PESAJE_INICIAL": { bg: "#E0E7FF", color: "#3730A3" },
+    "CAPTURA_DIGITAL": { bg: "#F3E8FF", color: "#6B21A8" },
+    "CARGANDO": { bg: "#FED7AA", color: "#9A3412" },
+    "CARGA_COMPLETADA": { bg: "#DCFCE7", color: "#166534" },
+    "PESAJE_FINAL": { bg: "#CCFBF1", color: "#134E4A" },
+    "SALIDA_APROBADA": { bg: "#D1FAE5", color: "#065F46" },
   };
   const movementStyle = {
     CARGA: { bg: "#F1E8BD", color: "#9E4500" },
@@ -159,6 +177,14 @@ function DespachosPage() {
     const h = Math.floor(minutes / 60);
     const m = minutes % 60;
     return `${h}h ${m}m`;
+  };
+
+  // Función auxiliar para convertir fecha DD/MM/YYYY a YYYY-MM-DD
+  const parseDateToKey = (dateStr) => {
+    if (!dateStr) return null;
+    const parts = dateStr.split("/");
+    if (parts.length !== 3) return null;
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
   };
 
   const filteredRows = useMemo(() => {
@@ -181,16 +207,32 @@ function DespachosPage() {
         row.company.toLowerCase().includes(search) ||
         row.plate.toLowerCase().includes(search);
 
-      return matchRegion && matchStatus && matchProduct && matchReservation && matchSearch;
+      // Filtro por fecha
+      let matchFecha = true;
+      if (fechaDesde || fechaHasta) {
+        const fechaDelivery = parseDateToKey(row.scheduledDate || row.deliveryDate);
+        if (!fechaDelivery) {
+          matchFecha = false;
+        } else {
+          if (fechaDesde && fechaDelivery < fechaDesde) {
+            matchFecha = false;
+          }
+          if (fechaHasta && fechaDelivery > fechaHasta) {
+            matchFecha = false;
+          }
+        }
+      }
+
+      return matchRegion && matchStatus && matchProduct && matchReservation && matchSearch && matchFecha;
     });
-  }, [dispatchData, productFilter, regionFilter, reservationFilter, searchValue, statusFilter]);
+  }, [dispatchData, productFilter, regionFilter, reservationFilter, searchValue, statusFilter, fechaDesde, fechaHasta]);
 
   const pageCount = Math.max(1, Math.ceil(filteredRows.length / rowsPerPage));
   const currentPage = Math.min(page, pageCount);
   const paginatedRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
   const activeFilters =
     regionFilter.length + statusFilter.length + productFilter.length + reservationFilter.length +
-    (searchValue.trim().length > 0 ? 1 : 0);
+    (searchValue.trim().length > 0 ? 1 : 0) + (fechaDesde ? 1 : 0) + (fechaHasta ? 1 : 0);
 
   const handleResetFilters = () => {
     setRegionFilter([]);
@@ -198,6 +240,8 @@ function DespachosPage() {
     setProductFilter([]);
     setReservationFilter([]);
     setSearchValue("");
+    setFechaDesde("");
+    setFechaHasta("");
     setPage(1);
   };
 
@@ -210,15 +254,6 @@ function DespachosPage() {
             Delivery
           </Typography>
           <Stack direction="row" spacing={1} alignItems="center">
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              disabled
-              sx={{ fontWeight: 600 }}
-            >
-              Lista de chequeo consolidado
-            </Button>
             <Chip
               icon={<Tune fontSize="small" />}
               label={`Filtros activos (${activeFilters})`}
@@ -239,136 +274,178 @@ function DespachosPage() {
           </Stack>
         </Stack>
 
-        <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
-          <FormControl size="small" sx={{ minWidth: 190 }}>
-            <InputLabel id="region-filter-label">Región</InputLabel>
-            <Select
-              labelId="region-filter-label"
-              label="Región"
-              multiple
-              value={regionFilter}
-              onChange={(event) => {
-                const value = event.target.value;
-                setRegionFilter(typeof value === "string" ? value.split(",") : value);
-                setPage(1);
-              }}
-              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Regiones")}
-            >
-              <MenuItem value="norte">
-                <Checkbox size="small" checked={regionFilter.includes("norte")} />
-                Zona Norte
-              </MenuItem>
-              <MenuItem value="centro">
-                <Checkbox size="small" checked={regionFilter.includes("centro")} />
-                Zona Centro
-              </MenuItem>
-              <MenuItem value="sur">
-                <Checkbox size="small" checked={regionFilter.includes("sur")} />
-                Zona Sur
-              </MenuItem>
-            </Select>
-          </FormControl>
+        <Stack direction={{ xs: "column", md: "row" }} spacing={1} justifyContent="space-between" alignItems="center">
+          <Stack direction={{ xs: "column", md: "row" }} spacing={1} flexWrap="wrap">
+            <FormControl size="small" sx={{ minWidth: 190 }}>
+              <InputLabel id="region-filter-label">Región</InputLabel>
+              <Select
+                labelId="region-filter-label"
+                label="Región"
+                multiple
+                value={regionFilter}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setRegionFilter(typeof value === "string" ? value.split(",") : value);
+                  setPage(1);
+                }}
+                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Regiones")}
+              >
+                <MenuItem value="norte">
+                  <Checkbox size="small" checked={regionFilter.includes("norte")} />
+                  Zona Norte
+                </MenuItem>
+                <MenuItem value="centro">
+                  <Checkbox size="small" checked={regionFilter.includes("centro")} />
+                  Zona Centro
+                </MenuItem>
+                <MenuItem value="sur">
+                  <Checkbox size="small" checked={regionFilter.includes("sur")} />
+                  Zona Sur
+                </MenuItem>
+              </Select>
+            </FormControl>
 
-          <FormControl size="small" sx={{ minWidth: 190 }}>
-            <InputLabel id="status-filter-label">Estado</InputLabel>
-            <Select
-              labelId="status-filter-label"
-              label="Estado"
-              multiple
-              value={statusFilter}
-              onChange={(event) => {
-                const value = event.target.value;
-                setStatusFilter(typeof value === "string" ? value.split(",") : value);
-                setPage(1);
-              }}
-              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Estados")}
-            >
-              <MenuItem value="no recogido">
-                <Checkbox size="small" checked={statusFilter.includes("no recogido")} />
-                No Recogido
-              </MenuItem>
-            </Select>
-          </FormControl>
+            <FormControl size="small" sx={{ minWidth: 190 }}>
+              <InputLabel id="status-filter-label">Estado</InputLabel>
+              <Select
+                labelId="status-filter-label"
+                label="Estado"
+                multiple
+                value={statusFilter}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setStatusFilter(typeof value === "string" ? value.split(",") : value);
+                  setPage(1);
+                }}
+                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Estados")}
+              >
+                {[...new Set(dispatchData.map((row) => row.status))].sort().map((status) => {
+                  const statusLabels = {
+                    "EN_TRANSITO": "En Tránsito",
+                    "INGRESO_APROBADO": "Ingreso Aprobado",
+                    "PESAJE_INICIAL": "Pesaje Inicial",
+                    "CAPTURA_DIGITAL": "Captura Digital",
+                    "CARGANDO": "Cargando",
+                    "CARGA_COMPLETADA": "Carga Completada",
+                    "PESAJE_FINAL": "Pesaje Final",
+                    "SALIDA_APROBADA": "Salida Aprobada",
+                  };
+                  return (
+                    <MenuItem key={status} value={status.toLowerCase()}>
+                      <Checkbox size="small" checked={statusFilter.includes(status.toLowerCase())} />
+                      {statusLabels[status] || status}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
 
-          <FormControl size="small" sx={{ minWidth: 190 }}>
-            <InputLabel id="product-filter-label">Producto</InputLabel>
-            <Select
-              labelId="product-filter-label"
-              label="Producto"
-              multiple
-              value={productFilter}
-              onChange={(event) => {
-                const value = event.target.value;
-                setProductFilter(typeof value === "string" ? value.split(",") : value);
-                setPage(1);
-              }}
-              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Productos")}
-            >
-              <MenuItem value="soda caustica">
-                <Checkbox size="small" checked={productFilter.includes("soda caustica")} />
-                SODA CAUSTICA
-              </MenuItem>
-              <MenuItem value="hipoclorito de sodio">
-                <Checkbox size="small" checked={productFilter.includes("hipoclorito de sodio")} />
-                HIPOCLORITO DE SODIO
-              </MenuItem>
-              <MenuItem value="a clorhidrico">
-                <Checkbox size="small" checked={productFilter.includes("a clorhidrico")} />
-                A CLORHIDRICO
-              </MenuItem>
-              <MenuItem value="cloruro ferrico">
-                <Checkbox size="small" checked={productFilter.includes("cloruro ferrico")} />
-                CLORURO FERRICO
-              </MenuItem>
-              <MenuItem value="calcio tur">
-                <Checkbox size="small" checked={productFilter.includes("calcio tur")} />
-                CALCIO TUR
-              </MenuItem>
-              <MenuItem value="calcio refi">
-                <Checkbox size="small" checked={productFilter.includes("calcio refi")} />
-                CALCIO REFI
-              </MenuItem>
-              <MenuItem value="a sulfurico diluido">
-                <Checkbox size="small" checked={productFilter.includes("a sulfurico diluido")} />
-                A SULFURICO DILUIDO
-              </MenuItem>
-              <MenuItem value="cloro">
-                <Checkbox size="small" checked={productFilter.includes("cloro")} />
-                CLORO
-              </MenuItem>
-            </Select>
-          </FormControl>
+            <FormControl size="small" sx={{ minWidth: 190 }}>
+              <InputLabel id="product-filter-label">Producto</InputLabel>
+              <Select
+                labelId="product-filter-label"
+                label="Producto"
+                multiple
+                value={productFilter}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setProductFilter(typeof value === "string" ? value.split(",") : value);
+                  setPage(1);
+                }}
+                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Productos")}
+              >
+                <MenuItem value="soda caustica">
+                  <Checkbox size="small" checked={productFilter.includes("soda caustica")} />
+                  SODA CAUSTICA
+                </MenuItem>
+                <MenuItem value="hipoclorito de sodio">
+                  <Checkbox size="small" checked={productFilter.includes("hipoclorito de sodio")} />
+                  HIPOCLORITO DE SODIO
+                </MenuItem>
+                <MenuItem value="a clorhidrico">
+                  <Checkbox size="small" checked={productFilter.includes("a clorhidrico")} />
+                  A CLORHIDRICO
+                </MenuItem>
+                <MenuItem value="cloruro ferrico">
+                  <Checkbox size="small" checked={productFilter.includes("cloruro ferrico")} />
+                  CLORURO FERRICO
+                </MenuItem>
+                <MenuItem value="calcio tur">
+                  <Checkbox size="small" checked={productFilter.includes("calcio tur")} />
+                  CALCIO TUR
+                </MenuItem>
+                <MenuItem value="calcio refi">
+                  <Checkbox size="small" checked={productFilter.includes("calcio refi")} />
+                  CALCIO REFI
+                </MenuItem>
+                <MenuItem value="a sulfurico diluido">
+                  <Checkbox size="small" checked={productFilter.includes("a sulfurico diluido")} />
+                  A SULFURICO DILUIDO
+                </MenuItem>
+                <MenuItem value="cloro">
+                  <Checkbox size="small" checked={productFilter.includes("cloro")} />
+                  CLORO
+                </MenuItem>
+              </Select>
+            </FormControl>
 
-          <FormControl size="small" sx={{ minWidth: 190 }}>
-            <InputLabel id="reservation-filter-label">Reserva</InputLabel>
-            <Select
-              labelId="reservation-filter-label"
-              label="Reserva"
-              multiple
-              value={reservationFilter}
-              onChange={(event) => {
-                const value = event.target.value;
-                setReservationFilter(typeof value === "string" ? value.split(",") : value);
+            <FormControl size="small" sx={{ minWidth: 190 }}>
+              <InputLabel id="reservation-filter-label">Reserva</InputLabel>
+              <Select
+                labelId="reservation-filter-label"
+                label="Reserva"
+                multiple
+                value={reservationFilter}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setReservationFilter(typeof value === "string" ? value.split(",") : value);
+                  setPage(1);
+                }}
+                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Reservas")}
+              >
+                <MenuItem value="con reserva">
+                  <Checkbox size="small" checked={reservationFilter.includes("con reserva")} />
+                  Con Reserva
+                </MenuItem>
+                <MenuItem value="sin reserva">
+                  <Checkbox size="small" checked={reservationFilter.includes("sin reserva")} />
+                  Sin Reserva
+                </MenuItem>
+              </Select>
+            </FormControl>
+
+            <TextField
+              size="small"
+              type="date"
+              label="Fecha Desde"
+              value={fechaDesde}
+              onChange={(e) => {
+                setFechaDesde(e.target.value);
                 setPage(1);
               }}
-              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Reservas")}
-            >
-              <MenuItem value="con reserva">
-                <Checkbox size="small" checked={reservationFilter.includes("con reserva")} />
-                Con Reserva
-              </MenuItem>
-              <MenuItem value="sin reserva">
-                <Checkbox size="small" checked={reservationFilter.includes("sin reserva")} />
-                Sin Reserva
-              </MenuItem>
-            </Select>
-          </FormControl>
+              InputLabelProps={{ shrink: true }}
+              sx={{ minWidth: 190 }}
+            />
+
+            <TextField
+              size="small"
+              type="date"
+              label="Fecha Hasta"
+              value={fechaHasta}
+              onChange={(e) => {
+                setFechaHasta(e.target.value);
+                setPage(1);
+              }}
+              InputLabelProps={{ shrink: true }}
+              sx={{ minWidth: 190 }}
+            />
+          </Stack>
 
           <TextField
             size="small"
             label="Buscar"
             placeholder="Buscar por ID o conductor"
-            sx={{ minWidth: 220, flexGrow: 1 }}
+            sx={{ minWidth: 180, maxWidth: 220 }}
             value={searchValue}
             onChange={(event) => {
               setSearchValue(event.target.value);
@@ -446,7 +523,18 @@ function DespachosPage() {
                   <TableCell>
                     <Chip
                       size="small"
-                      label={row.status}
+                      label={
+                        {
+                          "EN_TRANSITO": "En Tránsito",
+                          "INGRESO_APROBADO": "Ingreso Aprobado",
+                          "PESAJE_INICIAL": "Pesaje Inicial",
+                          "CAPTURA_DIGITAL": "Captura Digital",
+                          "CARGANDO": "Cargando",
+                          "CARGA_COMPLETADA": "Carga Completada",
+                          "PESAJE_FINAL": "Pesaje Final",
+                          "SALIDA_APROBADA": "Salida Aprobada",
+                        }[row.status] || row.status
+                      }
                       sx={{
                         bgcolor: statusStyle[row.status]?.bg || "#E5E7EB",
                         color: statusStyle[row.status]?.color || "#4B5563",

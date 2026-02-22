@@ -38,7 +38,7 @@ const initialFormData = {
   movement: "CARGA",
   product: "",
   plate: "",
-  status: "En Atención",
+  status: "EN_TRANSITO",
   region: "Centro",
   // Paso 2: Información del envío
   origin: "",
@@ -255,9 +255,14 @@ function DespachoFormModal({ open, onClose, initialData = null, onSave }) {
                   value={formData.status}
                   onChange={(event) => handleChange("status", event.target.value)}
                 >
-                  <MenuItem value="En Atención">En Atención</MenuItem>
-                  <MenuItem value="Finalizado">Finalizado</MenuItem>
-                  <MenuItem value="Pendiente">Pendiente</MenuItem>
+                  <MenuItem value="EN_TRANSITO">En Tránsito</MenuItem>
+                  <MenuItem value="INGRESO_APROBADO">Ingreso Aprobado</MenuItem>
+                  <MenuItem value="PESAJE_INICIAL">Pesaje Inicial</MenuItem>
+                  <MenuItem value="CAPTURA_DIGITAL">Captura Digital</MenuItem>
+                  <MenuItem value="CARGANDO">Cargando</MenuItem>
+                  <MenuItem value="CARGA_COMPLETADA">Carga Completada</MenuItem>
+                  <MenuItem value="PESAJE_FINAL">Pesaje Final</MenuItem>
+                  <MenuItem value="SALIDA_APROBADA">Salida Aprobada</MenuItem>
                 </Select>
               </FormControl>
               <FormControl fullWidth size="small">

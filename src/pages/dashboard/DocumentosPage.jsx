@@ -30,12 +30,13 @@ import Description from "@mui/icons-material/Description";
 import { brandColors } from "../../theme";
 
 // Datos mock de documentos
-const documentosRows = [
+export const documentosRows = [
   {
     id: "DOC-001",
-    tipo: "Guía de Delivery",
+    tipo: "Guía de despacho",
     numero: "GD-542187",
     deliveryId: "DEL-843295",
+    reservaId: "RES-001",
     fecha: "2025-03-16",
     estado: "Enviado",
     destinatario: "TRANSPORTES OSORIO",
@@ -43,9 +44,10 @@ const documentosRows = [
   },
   {
     id: "DOC-002",
-    tipo: "Manifiesto de Carga",
-    numero: "MC-98732",
+    tipo: "Ticket de Pesado",
+    numero: "TP-98732",
     deliveryId: "DEL-843295",
+    reservaId: "RES-001",
     fecha: "2025-03-16",
     estado: "Pendiente",
     destinatario: "TRANSPORTES OSORIO",
@@ -53,9 +55,10 @@ const documentosRows = [
   },
   {
     id: "DOC-003",
-    tipo: "Certificado de Calidad",
-    numero: "CC-342156",
+    tipo: "Guía de despacho",
+    numero: "GD-342156",
     deliveryId: "DEL-843298",
+    reservaId: "RES-002",
     fecha: "2025-03-16",
     estado: "Enviado",
     destinatario: "MERCOTANK CHILE",
@@ -63,9 +66,10 @@ const documentosRows = [
   },
   {
     id: "DOC-004",
-    tipo: "Orden de Compra",
-    numero: "OC-76543",
+    tipo: "Ticket de Pesado",
+    numero: "TP-76543",
     deliveryId: "DEL-843301",
+    reservaId: "RES-003",
     fecha: "2025-03-16",
     estado: "Generado",
     destinatario: "LOGISTICA SUR",
@@ -73,9 +77,10 @@ const documentosRows = [
   },
   {
     id: "DOC-005",
-    tipo: "Factura",
-    numero: "FAC-123456",
+    tipo: "Guía de despacho",
+    numero: "GD-123456",
     deliveryId: "DEL-843304",
+    reservaId: "RES-004",
     fecha: "2025-03-16",
     estado: "Enviado",
     destinatario: "TRANSPORTE NORTE",
@@ -91,25 +96,31 @@ function DocumentosPage() {
 
   const filteredRows = useMemo(() => {
     const search = searchValue.trim().toLowerCase();
-    return documentosRows.filter((row) => {
-      const rowTipo = row.tipo.toLowerCase();
-      const matchTipo = tipoFilter.length === 0 || tipoFilter.includes(rowTipo);
-      const matchSearch =
-        !search ||
-        row.id.toLowerCase().includes(search) ||
-        row.numero.toLowerCase().includes(search) ||
-        row.deliveryId.toLowerCase().includes(search) ||
-        row.destinatario.toLowerCase().includes(search);
+    return documentosRows
+      .filter((row) => {
+        // Solo mostrar "Guía de despacho" y "Ticket de Pesado"
+        return row.tipo === "Guía de despacho" || row.tipo === "Ticket de Pesado";
+      })
+      .filter((row) => {
+        const rowTipo = row.tipo.toLowerCase();
+        const matchTipo = tipoFilter.length === 0 || tipoFilter.includes(rowTipo);
+        const matchSearch =
+          !search ||
+          row.id.toLowerCase().includes(search) ||
+          row.numero.toLowerCase().includes(search) ||
+          row.deliveryId.toLowerCase().includes(search) ||
+          row.destinatario.toLowerCase().includes(search);
 
-      return matchTipo && matchSearch;
-    });
+        return matchTipo && matchSearch;
+      });
   }, [tipoFilter, searchValue]);
 
   const pageCount = Math.max(1, Math.ceil(filteredRows.length / rowsPerPage));
   const currentPage = Math.min(page, pageCount);
   const paginatedRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
-  const uniqueTipos = [...new Set(documentosRows.map((row) => row.tipo))];
+  // Solo mostrar los dos tipos permitidos en el filtro
+  const uniqueTipos = ["Guía de despacho", "Ticket de Pesado"];
 
   return (
     <Paper sx={{ p: 2, border: "1px solid", borderColor: "divider", boxShadow: "0px 12px 24px rgba(0, 46, 77, 0.08)" }}>
