@@ -1323,7 +1323,6 @@ function ReservasPage() {
                             <TableCell>Tipo</TableCell>
                             <TableCell>Número</TableCell>
                             <TableCell>Fecha</TableCell>
-                            <TableCell>Estado</TableCell>
                             <TableCell>Destinatario</TableCell>
                             <TableCell align="center">Acción</TableCell>
                           </TableRow>
@@ -1342,25 +1341,6 @@ function ReservasPage() {
                               </TableCell>
                               <TableCell sx={{ fontFamily: "monospace" }}>{doc.numero}</TableCell>
                               <TableCell>{doc.fecha}</TableCell>
-                              <TableCell>
-                                <Chip
-                                  label={doc.estado}
-                                  size="small"
-                                  sx={{
-                                    bgcolor: doc.estado === "Enviado" 
-                                      ? `${brandColors.forestGreen}22` 
-                                      : doc.estado === "Pendiente"
-                                      ? `${brandColors.sunriseOrange}22`
-                                      : `${brandColors.dayBlue}22`,
-                                    color: doc.estado === "Enviado"
-                                      ? brandColors.forestGreen
-                                      : doc.estado === "Pendiente"
-                                      ? brandColors.sunriseOrange
-                                      : brandColors.dayBlue,
-                                    fontWeight: 600,
-                                  }}
-                                />
-                              </TableCell>
                               <TableCell>{doc.destinatario}</TableCell>
                               <TableCell align="center">
                                 <Tooltip title="Ver documento" arrow placement="top">
@@ -1373,13 +1353,6 @@ function ReservasPage() {
                                     <Download fontSize="small" />
                                   </IconButton>
                                 </Tooltip>
-                                {doc.estado === "Pendiente" && (
-                                  <Tooltip title="Enviar" arrow placement="top">
-                                    <IconButton size="small" color="primary">
-                                      <Send fontSize="small" />
-                                    </IconButton>
-                                  </Tooltip>
-                                )}
                               </TableCell>
                             </TableRow>
                           ))}

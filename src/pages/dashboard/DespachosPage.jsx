@@ -29,7 +29,6 @@ import {
 } from "@mui/material";
 import Tune from "@mui/icons-material/Tune";
 import Search from "@mui/icons-material/Search";
-import Visibility from "@mui/icons-material/Visibility";
 import RestartAlt from "@mui/icons-material/RestartAlt";
 import BookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import Timeline from "@mui/icons-material/Timeline";
@@ -558,16 +557,6 @@ function DespachosPage() {
                   <TableCell>{row.driver}</TableCell>
                   <TableCell sx={{ fontFamily: "monospace", letterSpacing: "0.04em" }}>{row.plate}</TableCell>
                   <TableCell align="center">
-                    <Tooltip title="Ver detalle" arrow placement="top">
-                      <IconButton
-                        size="small"
-                        color="primary"
-                        aria-label="ver detalle"
-                        onClick={() => navigate(`/dashboard/despachos/${row.actNumber}`)}
-                      >
-                        <Visibility fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
                     <Tooltip title="Generar reserva" arrow placement="top">
                       <IconButton
                         size="small"
