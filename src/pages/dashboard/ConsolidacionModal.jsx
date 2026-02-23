@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
-import SignatureCanvas from "react-signature-canvas";
+// import SignatureCanvas from "react-signature-canvas";
 import {
   Box,
   Button,
@@ -38,7 +38,7 @@ function ConsolidacionModal({ open, onClose, reserva }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [activeTab, setActiveTab] = useState(0);
-  const firmaOperadorRef = useRef(null);
+  // const firmaOperadorRef = useRef(null);
   
   // Estado inicial del formulario
   const getInitialFormData = () => ({
@@ -252,80 +252,80 @@ function ConsolidacionModal({ open, onClose, reserva }) {
   );
 
   // Componente para firma
-  const SignatureField = ({ label, value, onChange, helperText }) => {
-    const sigPadRef = useRef(null);
+  // const SignatureField = ({ label, value, onChange, helperText }) => {
+  //   const sigPadRef = useRef(null);
 
-    const handleClear = () => {
-      if (sigPadRef.current) {
-        sigPadRef.current.clear();
-        onChange("");
-      }
-    };
+  //   const handleClear = () => {
+  //     if (sigPadRef.current) {
+  //       sigPadRef.current.clear();
+  //       onChange("");
+  //     }
+  //   };
 
-    const handleEnd = () => {
-      if (sigPadRef.current && !sigPadRef.current.isEmpty()) {
-        const dataURL = sigPadRef.current.toDataURL();
-        onChange(dataURL);
-      }
-    };
+  //   const handleEnd = () => {
+  //     if (sigPadRef.current && !sigPadRef.current.isEmpty()) {
+  //       const dataURL = sigPadRef.current.toDataURL();
+  //       onChange(dataURL);
+  //     }
+  //   };
 
-    useEffect(() => {
-      if (value && sigPadRef.current && sigPadRef.current.isEmpty()) {
-        sigPadRef.current.fromDataURL(value);
-      }
-    }, [value]);
+  //   useEffect(() => {
+  //     if (value && sigPadRef.current && sigPadRef.current.isEmpty()) {
+  //       sigPadRef.current.fromDataURL(value);
+  //     }
+  //   }, [value]);
 
-    return (
-      <Box>
-        <Typography variant="caption" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" }, mb: 0.5, display: "block", fontWeight: 500 }}>
-          {label}
-        </Typography>
-        <Paper
-          variant="outlined"
-          sx={{
-            p: 1,
-            border: "1px solid",
-            borderColor: "divider",
-            borderRadius: 1,
-            bgcolor: "white",
-          }}
-        >
-          <Box
-            sx={{
-              border: "1px solid",
-              borderColor: "divider",
-              borderRadius: 1,
-              overflow: "hidden",
-              bgcolor: "white",
-            }}
-          >
-            <SignatureCanvas
-              ref={sigPadRef}
-              canvasProps={{
-                width: 500,
-                height: 200,
-                className: "signature-canvas",
-                style: { width: "100%", height: "200px", touchAction: "none" },
-              }}
-              onEnd={handleEnd}
-              backgroundColor="white"
-              penColor="black"
-            />
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 1, gap: 1 }}>
-            <Button size="small" variant="outlined" onClick={handleClear}>
-              Limpiar
-            </Button>
-          </Box>
-        </Paper>
-        {helperText && (
-          <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 0.5, fontSize: { xs: "0.65rem", sm: "0.75rem" } }}>
-            {helperText}
-          </Typography>
-        )}
-      </Box>
-    );
-  };
+  //   return (
+  //     <Box>
+  //       <Typography variant="caption" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" }, mb: 0.5, display: "block", fontWeight: 500 }}>
+  //         {label}
+  //       </Typography>
+  //       <Paper
+  //         variant="outlined"
+  //         sx={{
+  //           p: 1,
+  //           border: "1px solid",
+  //           borderColor: "divider",
+  //           borderRadius: 1,
+  //           bgcolor: "white",
+  //         }}
+  //       >
+  //         <Box
+  //           sx={{
+  //             border: "1px solid",
+  //             borderColor: "divider",
+  //             borderRadius: 1,
+  //             overflow: "hidden",
+  //             bgcolor: "white",
+  //           }}
+  //         >
+  //           <SignatureCanvas
+  //             ref={sigPadRef}
+  //             canvasProps={{
+  //               width: 500,
+  //               height: 200,
+  //               className: "signature-canvas",
+  //               style: { width: "100%", height: "200px", touchAction: "none" },
+  //             }}
+  //             onEnd={handleEnd}
+  //             backgroundColor="white"
+  //             penColor="black"
+  //           />
+  //         </Box>
+  //         <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 1, gap: 1 }}>
+  //           <Button size="small" variant="outlined" onClick={handleClear}>
+  //             Limpiar
+  //           </Button>
+  //         </Box>
+  //       </Paper>
+  //       {helperText && (
+  //         <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 0.5, fontSize: { xs: "0.65rem", sm: "0.75rem" } }}>
+  //           {helperText}
+  //         </Typography>
+  //       )}
+  //     </Box>
+  //   );
+  // };
 
   // Componente para campos Boolean simples (Si/No)
   const SimpleBooleanField = ({ label, value, onChange, editable = true, helperText }) => (
@@ -598,14 +598,14 @@ function ConsolidacionModal({ open, onClose, reserva }) {
                             sx={{ width: "100%" }}
                           />
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                           <SignatureField
                             label="Firma Conductor"
                             helperText="Firme con el mouse o dedo en el área de arriba"
                             value={formData.Firma_Conductor}
                             onChange={(value) => handleChange("Firma_Conductor", value)}
                           />
-                        </Grid>
+                        </Grid> */}
                       </Grid>
                     </Box>
 
@@ -1521,14 +1521,14 @@ function ConsolidacionModal({ open, onClose, reserva }) {
                               InputLabelProps={{ shrink: true }}
                             />
                           </Grid>
-                          <Grid item xs={12}>
+                          {/* <Grid item xs={12}>
                             <SignatureField
                               label="Firma Operador"
                               helperText="Firme con el mouse o dedo en el área de arriba"
                               value={formData.Firma_Operador}
                               onChange={(value) => handleChange("Firma_Operador", value)}
                             />
-                          </Grid>
+                          </Grid> */}
                         </Grid>
                       </Box>
                   </Stack>
@@ -1542,7 +1542,7 @@ function ConsolidacionModal({ open, onClose, reserva }) {
                     </Typography>
 
                     <Grid container spacing={2}>
-                      <Grid item xs={12}>
+                      {/* <Grid item xs={12}>
                         <SignatureField
                           label="Firma Transportista"
                           helperText="Firme con el mouse o dedo en el área de arriba"
@@ -1557,7 +1557,7 @@ function ConsolidacionModal({ open, onClose, reserva }) {
                           value={formData.Firma_Supervisor}
                           onChange={(value) => handleChange("Firma_Supervisor", value)}
                         />
-                      </Grid>
+                      </Grid> */}
                       <Grid item xs={12} sm={6} md={4}>
                         <TextField
                           size="small"

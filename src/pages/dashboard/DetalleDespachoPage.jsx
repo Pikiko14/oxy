@@ -108,7 +108,7 @@ const detailMock = {
   ],
   documents: [
     { name: "Guía de despacho", code: "#GD-542187" },
-    { name: "Ticket de Pesado", code: "#TP-98732" },
+    { name: "Certificado", code: "#TP-98732" },
   ],
   observacionesOperativas: [
     { fecha: "2025-03-16 14:30", usuario: "Romanero OXY", texto: "Retraso en la carga debido a verificación de calidad adicional" },
@@ -702,7 +702,7 @@ function DetalleDespachoPage() {
             <InfoCard title="Documentos" icon={<Description fontSize="small" />}>
               <Grid container spacing={2}>
                 {d.documents
-                  .filter((doc) => doc.name === "Guía de despacho" || doc.name === "Ticket de Pesado")
+                    .filter((doc) => doc.name === "Guía de despacho" || doc.name === "Certificado")
                   .map((doc) => (
                     <Grid key={doc.code} size={{ xs: 12, sm: 6 }}>
                       <Paper

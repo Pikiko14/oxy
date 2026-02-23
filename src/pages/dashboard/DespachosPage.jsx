@@ -31,7 +31,6 @@ import Tune from "@mui/icons-material/Tune";
 import Search from "@mui/icons-material/Search";
 import RestartAlt from "@mui/icons-material/RestartAlt";
 import BookmarkBorder from "@mui/icons-material/BookmarkBorder";
-import Timeline from "@mui/icons-material/Timeline";
 import Create from "@mui/icons-material/Create";
 import Assignment from "@mui/icons-material/Assignment";
 import LocalShippingOutlined from "@mui/icons-material/LocalShippingOutlined";
@@ -65,7 +64,25 @@ export const dispatchRows = [
   { actNumber: "843316", company: "DISTRIBUCION RAPIDA", driver: "MONICA TORRES", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "RPD123", status: "CARGANDO", arrival: "10:00", attention: "10:15", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "21/02/2026", deliveryTime: "10:00", freightOrder: "6100047560", deliveryQuantity: "15,000 TO", openQuantity: "15,000 TO", mode: "Camión Cisterna", route: "Z015 Norte Rapida", customerAddress: "QUIMICA RAPIDA", carrierName: "DISTRIBUCION RAPIDA", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
   { actNumber: "843317", company: "FLOTA MODERNA", driver: "DIEGO SANTOS", movement: "CARGA", product: "A CLORHIDRICO", plate: "MOD456", status: "CARGA_COMPLETADA", arrival: "11:30", attention: "11:45", departure: "-", durationMin: 0, region: "Sur", deliveryDate: "21/02/2026", deliveryTime: "11:30", freightOrder: "6100047561", deliveryQuantity: "18,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z016 Sur Moderna", customerAddress: "INDUSTRIAS MODERNAS", carrierName: "FLOTA MODERNA", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213876", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
   { actNumber: "843318", company: "LOGISTICA PRECISA", driver: "PATRICIA MORALES", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "PRC789", status: "PESAJE_FINAL", arrival: "13:00", attention: "13:15", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "21/02/2026", deliveryTime: "13:00", freightOrder: "6100047562", deliveryQuantity: "16,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z017 Centro Precisa", customerAddress: "MINERIA PRECISA", carrierName: "LOGISTICA PRECISA", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213877", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
-  { actNumber: "843319", company: "TRANSPORTES DIGITALES", driver: "ALEJANDRO CASTRO", movement: "CARGA", product: "SODA CAUSTICA", plate: "DIG321", status: "CAPTURA_DIGITAL", arrival: "09:00", attention: "09:20", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "21/02/2026", deliveryTime: "09:00", freightOrder: "6100047563", deliveryQuantity: "22,000 TO", openQuantity: "22,000 TO", mode: "Camión Cisterna", route: "Z018 Norte Digital", customerAddress: "INDUSTRIAS DIGITALES", carrierName: "TRANSPORTES DIGITALES", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
+  { actNumber: "843319", company: "TRANSPORTES DIGITALES", driver: "ALEJANDRO CASTRO", movement: "CARGA", product: "SODA CAUSTICA", plate: "DIG321", status: "CARGA_COMPLETADA", arrival: "09:00", attention: "09:20", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "21/02/2026", deliveryTime: "09:00", freightOrder: "6100047563", deliveryQuantity: "22,000 TO", openQuantity: "22,000 TO", mode: "Camión Cisterna", route: "Z018 Norte Digital", customerAddress: "INDUSTRIAS DIGITALES", carrierName: "TRANSPORTES DIGITALES", plantLocation: "1752", scheduledDate: "21/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "20/02/2026" },
+  { actNumber: "843320", company: "TRANSPORTES FEBRERO", driver: "MARTIN FERNANDEZ", movement: "CARGA", product: "HIPOCLORITO DE SODIO", plate: "FEB789", status: "SALIDA_APROBADA", arrival: "08:30", attention: "08:45", departure: "10:15", durationMin: 105, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "08:30", freightOrder: "6100047564", deliveryQuantity: "26,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z019 Centro Febrero", customerAddress: "INDUSTRIAS FEBRERO", carrierName: "TRANSPORTES FEBRERO", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+
+  // Deliveries adicionales para el 23/02/2026
+  { actNumber: "843321", company: "LOGISTICA ANDES", driver: "RAUL SEPULVEDA", movement: "CARGA", product: "SODA CAUSTICA", plate: "AND321", status: "EN_TRANSITO", arrival: "07:45", attention: "08:05", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "07:45", freightOrder: "6100047565", deliveryQuantity: "20,000 TO", openQuantity: "20,000 TO", mode: "Camión Cisterna", route: "Z020 Centro Andes", customerAddress: "PLANTA INDUSTRIAL ANDES", carrierName: "LOGISTICA ANDES", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843322", company: "TRANSPORTE LITORAL", driver: "CARLA ROJAS", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "LIT456", status: "PESAJE_INICIAL", arrival: "09:15", attention: "09:25", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "09:15", freightOrder: "6100047566", deliveryQuantity: "18,500 TO", openQuantity: "18,500 TO", mode: "Camión Cisterna", route: "Z021 Centro Litoral", customerAddress: "AGUAS LITORALES", carrierName: "TRANSPORTE LITORAL", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843323", company: "NORTE EXPRESS", driver: "JORGE QUISPE", movement: "CARGA", product: "A CLORHIDRICO", plate: "NOR789", status: "INGRESO_APROBADO", arrival: "10:00", attention: "10:20", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "23/02/2026", deliveryTime: "10:00", freightOrder: "6100047567", deliveryQuantity: "22,000 TO", openQuantity: "22,000 TO", mode: "Camión Cisterna", route: "Z022 Norte Express", customerAddress: "MINERA DEL DESIERTO", carrierName: "NORTE EXPRESS", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213876", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843324", company: "SUR LOGISTICS", driver: "MARIO PEREZ", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "SUR111", status: "CARGANDO", arrival: "10:30", attention: "10:45", departure: "-", durationMin: 0, region: "Sur", deliveryDate: "23/02/2026", deliveryTime: "10:30", freightOrder: "6100047568", deliveryQuantity: "16,000 TO", openQuantity: "16,000 TO", mode: "Camión Cisterna", route: "Z023 Sur Logistics", customerAddress: "PLANTA PAPEL SUR", carrierName: "SUR LOGISTICS", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213877", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843325", company: "RUTA METROPOLITANA", driver: "VERONICA DIAZ", movement: "CARGA", product: "SODA CAUSTICA", plate: "MET222", status: "CARGA_COMPLETADA", arrival: "11:15", attention: "11:30", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "11:15", freightOrder: "6100047569", deliveryQuantity: "24,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z024 Centro Metro", customerAddress: "QUIMICOS METRO", carrierName: "RUTA METROPOLITANA", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843326", company: "ANDINA CARGAS", driver: "PABLO GARCIA", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "AND654", status: "PESAJE_FINAL", arrival: "12:00", attention: "12:10", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "12:00", freightOrder: "6100047570", deliveryQuantity: "19,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z025 Centro Andina", customerAddress: "PLANTA POTABILIZADORA", carrierName: "ANDINA CARGAS", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843327", company: "PACIFICO TRANSPORTES", driver: "RODRIGO LARA", movement: "CARGA", product: "A SULFURICO DILUIDO", plate: "PAC777", status: "SALIDA_APROBADA", arrival: "12:30", attention: "12:45", departure: "13:30", durationMin: 60, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "12:30", freightOrder: "6100047571", deliveryQuantity: "21,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z026 Centro Pacífico", customerAddress: "MINERA COSTERA", carrierName: "PACIFICO TRANSPORTES", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213880", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843328", company: "LOGISTICA AUSTRAL", driver: "NICOLAS OYARZO", movement: "DESCARGA", product: "CLORO", plate: "AUS888", status: "EN_TRANSITO", arrival: "13:00", attention: "-", departure: "-", durationMin: 0, region: "Sur", deliveryDate: "23/02/2026", deliveryTime: "13:00", freightOrder: "6100047572", deliveryQuantity: "9,000 TO", openQuantity: "9,000 TO", mode: "Camión Cisterna", route: "Z027 Sur Austral", customerAddress: "PLANTA TRATAMIENTO SUR", carrierName: "LOGISTICA AUSTRAL", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213881", hasReservation: true, aprobadoIngresoSAC: false, fechaCreacion: "22/02/2026" },
+  { actNumber: "843329", company: "CORDILLERA LOGISTICS", driver: "ALEJANDRA MESA", movement: "CARGA", product: "SODA CAUSTICA", plate: "COR999", status: "INGRESO_APROBADO", arrival: "13:30", attention: "13:45", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "23/02/2026", deliveryTime: "13:30", freightOrder: "6100047573", deliveryQuantity: "23,000 TO", openQuantity: "23,000 TO", mode: "Camión Cisterna", route: "Z028 Norte Cordillera", customerAddress: "MINERA CORDILLERA", carrierName: "CORDILLERA LOGISTICS", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843330", company: "RUTA CENTRAL", driver: "SERGIO PAVEZ", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "RUT123", status: "CARGANDO", arrival: "14:00", attention: "14:10", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "14:00", freightOrder: "6100047574", deliveryQuantity: "17,000 TO", openQuantity: "17,000 TO", mode: "Camión Cisterna", route: "Z029 Centro Ruta", customerAddress: "AGUAS CENTRO", carrierName: "RUTA CENTRAL", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843331", company: "LOGISTICA INDUSTRIAL", driver: "SOFIA CARRASCO", movement: "CARGA", product: "A CLORHIDRICO", plate: "IND456", status: "CARGA_COMPLETADA", arrival: "14:30", attention: "14:45", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "14:30", freightOrder: "6100047575", deliveryQuantity: "20,500 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z030 Centro Industrial", customerAddress: "PLANTA INDUSTRIAL CENTRO", carrierName: "LOGISTICA INDUSTRIAL", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213876", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843332", company: "TRANSPORTE MINERO", driver: "DANIEL ROJAS", movement: "DESCARGA", product: "CLORURO FERRICO", plate: "MIN741", status: "PESAJE_FINAL", arrival: "15:00", attention: "15:10", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "23/02/2026", deliveryTime: "15:00", freightOrder: "6100047576", deliveryQuantity: "18,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z031 Norte Minero", customerAddress: "MINERA NORTE GRANDE", carrierName: "TRANSPORTE MINERO", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213877", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843333", company: "LOGISTICA BIOBIO", driver: "PATRICIA ALVEAR", movement: "CARGA", product: "SODA CAUSTICA", plate: "BIO258", status: "SALIDA_APROBADA", arrival: "15:30", attention: "15:45", departure: "16:30", durationMin: 60, region: "Sur", deliveryDate: "23/02/2026", deliveryTime: "15:30", freightOrder: "6100047577", deliveryQuantity: "19,000 TO", openQuantity: "0,000 TO", mode: "Camión Cisterna", route: "Z032 Sur BioBio", customerAddress: "PLANTA CELULOSA BIOBIO", carrierName: "LOGISTICA BIOBIO", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213874", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
+  { actNumber: "843334", company: "RUTA COSTERA", driver: "IGNACIO SOTO", movement: "DESCARGA", product: "HIPOCLORITO DE SODIO", plate: "COS369", status: "EN_TRANSITO", arrival: "16:00", attention: "-", departure: "-", durationMin: 0, region: "Centro", deliveryDate: "23/02/2026", deliveryTime: "16:00", freightOrder: "6100047578", deliveryQuantity: "16,800 TO", openQuantity: "16,800 TO", mode: "Camión Cisterna", route: "Z033 Centro Costero", customerAddress: "PLANTA COSTA", carrierName: "RUTA COSTERA", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213875", hasReservation: true, aprobadoIngresoSAC: false, fechaCreacion: "22/02/2026" },
+  { actNumber: "843335", company: "TRANSPORTES ANDINOS", driver: "MIGUEL HERRERA", movement: "CARGA", product: "A SULFURICO DILUIDO", plate: "AND852", status: "PESAJE_INICIAL", arrival: "16:30", attention: "16:45", departure: "-", durationMin: 0, region: "Norte", deliveryDate: "23/02/2026", deliveryTime: "16:30", freightOrder: "6100047579", deliveryQuantity: "23,500 TO", openQuantity: "23,500 TO", mode: "Camión Cisterna", route: "Z034 Norte Andino", customerAddress: "MINERA ANDINA", carrierName: "TRANSPORTES ANDINOS", plantLocation: "1752", scheduledDate: "23/02/2026", material: "213880", hasReservation: true, aprobadoIngresoSAC: true, fechaCreacion: "22/02/2026" },
 ];
 
 function DespachosPage() {
@@ -81,79 +98,7 @@ function DespachosPage() {
   const [page, setPage] = useState(1);
   const [reservationModalOpen, setReservationModalOpen] = useState(false);
   const [selectedDelivery, setSelectedDelivery] = useState(null);
-  const [bitacoraModalOpen, setBitacoraModalOpen] = useState(false);
-  const [selectedReservaId, setSelectedReservaId] = useState(null);
   const rowsPerPage = 8;
-
-  // Función para obtener el ID de la reserva asociada a un delivery
-  const getReservaId = (actNumber) => {
-    if (!actNumber) return null;
-    // Buscar la reserva cuyo deliveryId coincida con el actNumber del delivery
-    // El formato es: reserva.deliveryId = "DEL-843295" y delivery.actNumber = "843295"
-    const reserva = reservasRows.find((r) => {
-      if (!r.deliveryId) return false;
-      const deliveryNumber = r.deliveryId.replace(/^DEL-/, "");
-      return deliveryNumber === actNumber;
-    });
-    return reserva ? reserva.id : null;
-  };
-
-  // Función para obtener la bitácora de una reserva
-  const getBitacoraByReservaId = (reservaId) => {
-    if (!reservaId) return [];
-    // Datos mock de bitácora - en producción vendría del backend
-    const bitacoraMock = [
-      {
-        id: "BIT-001",
-        tipo: "creacion",
-        titulo: "Reserva creada",
-        descripcion: `Reserva ${reservaId} creada en el sistema`,
-        usuario: "Operador OXY",
-        fecha: "2025-03-15 10:30:25",
-        icono: "create",
-        color: brandColors.oxyBlue,
-      },
-      {
-        id: "BIT-002",
-        tipo: "asignacion",
-        titulo: "Delivery asignado",
-        descripcion: `Delivery asignado a la reserva ${reservaId}`,
-        usuario: "Supervisor",
-        fecha: "2025-03-15 11:15:42",
-        icono: "assignment",
-        color: brandColors.oceanAqua,
-      },
-      {
-        id: "BIT-003",
-        tipo: "aprobacion",
-        titulo: "Aprobada para ingreso SAC",
-        descripcion: `Reserva ${reservaId} aprobada para ingreso desde SAC`,
-        usuario: "Admin Sistema",
-        fecha: "2025-03-15 14:20:10",
-        icono: "check",
-        color: brandColors.forestGreen,
-      },
-      {
-        id: "BIT-004",
-        tipo: "estado",
-        titulo: "Estado cambiado",
-        descripcion: `Estado de la reserva ${reservaId} cambiado a 'Confirmada'`,
-        usuario: "Operador OXY",
-        fecha: "2025-03-15 15:45:33",
-        icono: "info",
-        color: brandColors.dayBlue,
-      },
-    ];
-    return bitacoraMock;
-  };
-
-  const handleOpenBitacora = (actNumber) => {
-    const reservaId = getReservaId(actNumber);
-    if (reservaId) {
-      setSelectedReservaId(reservaId);
-      setBitacoraModalOpen(true);
-    }
-  };
 
   const statusStyle = {
     "EN_TRANSITO": { bg: "#FEF3C7", color: "#92400E" },
@@ -176,6 +121,17 @@ function DespachosPage() {
     const h = Math.floor(minutes / 60);
     const m = minutes % 60;
     return `${h}h ${m}m`;
+  };
+
+  // Función para obtener el ID de la reserva asociada a un delivery
+  const getReservaId = (actNumber) => {
+    if (!actNumber) return null;
+    const reserva = reservasRows.find((r) => {
+      if (!r.deliveryId) return false;
+      const deliveryNumber = r.deliveryId.replace(/^DEL-/, "");
+      return deliveryNumber === actNumber;
+    });
+    return reserva ? reserva.id : null;
   };
 
   // Función auxiliar para convertir fecha DD/MM/YYYY a YYYY-MM-DD
@@ -275,49 +231,49 @@ function DespachosPage() {
 
         <Stack direction={{ xs: "column", md: "row" }} spacing={1} justifyContent="space-between" alignItems="center">
           <Stack direction={{ xs: "column", md: "row" }} spacing={1} flexWrap="wrap">
-            <FormControl size="small" sx={{ minWidth: 190 }}>
-              <InputLabel id="region-filter-label">Región</InputLabel>
-              <Select
-                labelId="region-filter-label"
-                label="Región"
-                multiple
-                value={regionFilter}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setRegionFilter(typeof value === "string" ? value.split(",") : value);
-                  setPage(1);
-                }}
-                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Regiones")}
-              >
-                <MenuItem value="norte">
-                  <Checkbox size="small" checked={regionFilter.includes("norte")} />
-                  Zona Norte
-                </MenuItem>
-                <MenuItem value="centro">
-                  <Checkbox size="small" checked={regionFilter.includes("centro")} />
-                  Zona Centro
-                </MenuItem>
-                <MenuItem value="sur">
-                  <Checkbox size="small" checked={regionFilter.includes("sur")} />
-                  Zona Sur
-                </MenuItem>
-              </Select>
-            </FormControl>
+          <FormControl size="small" sx={{ minWidth: 190 }}>
+            <InputLabel id="region-filter-label">Región</InputLabel>
+            <Select
+              labelId="region-filter-label"
+              label="Región"
+              multiple
+              value={regionFilter}
+              onChange={(event) => {
+                const value = event.target.value;
+                setRegionFilter(typeof value === "string" ? value.split(",") : value);
+                setPage(1);
+              }}
+              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Regiones")}
+            >
+              <MenuItem value="norte">
+                <Checkbox size="small" checked={regionFilter.includes("norte")} />
+                Zona Norte
+              </MenuItem>
+              <MenuItem value="centro">
+                <Checkbox size="small" checked={regionFilter.includes("centro")} />
+                Zona Centro
+              </MenuItem>
+              <MenuItem value="sur">
+                <Checkbox size="small" checked={regionFilter.includes("sur")} />
+                Zona Sur
+              </MenuItem>
+            </Select>
+          </FormControl>
 
-            <FormControl size="small" sx={{ minWidth: 190 }}>
-              <InputLabel id="status-filter-label">Estado</InputLabel>
-              <Select
-                labelId="status-filter-label"
-                label="Estado"
-                multiple
-                value={statusFilter}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setStatusFilter(typeof value === "string" ? value.split(",") : value);
-                  setPage(1);
-                }}
-                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Estados")}
-              >
+          <FormControl size="small" sx={{ minWidth: 190 }}>
+            <InputLabel id="status-filter-label">Estado</InputLabel>
+            <Select
+              labelId="status-filter-label"
+              label="Estado"
+              multiple
+              value={statusFilter}
+              onChange={(event) => {
+                const value = event.target.value;
+                setStatusFilter(typeof value === "string" ? value.split(",") : value);
+                setPage(1);
+              }}
+              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Estados")}
+            >
                 {[...new Set(dispatchData.map((row) => row.status))].sort().map((status) => {
                   const statusLabels = {
                     "EN_TRANSITO": "En Tránsito",
@@ -333,85 +289,85 @@ function DespachosPage() {
                     <MenuItem key={status} value={status.toLowerCase()}>
                       <Checkbox size="small" checked={statusFilter.includes(status.toLowerCase())} />
                       {statusLabels[status] || status}
-                    </MenuItem>
+              </MenuItem>
                   );
                 })}
-              </Select>
-            </FormControl>
+            </Select>
+          </FormControl>
 
-            <FormControl size="small" sx={{ minWidth: 190 }}>
-              <InputLabel id="product-filter-label">Producto</InputLabel>
-              <Select
-                labelId="product-filter-label"
-                label="Producto"
-                multiple
-                value={productFilter}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setProductFilter(typeof value === "string" ? value.split(",") : value);
-                  setPage(1);
-                }}
-                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Productos")}
-              >
-                <MenuItem value="soda caustica">
-                  <Checkbox size="small" checked={productFilter.includes("soda caustica")} />
-                  SODA CAUSTICA
-                </MenuItem>
-                <MenuItem value="hipoclorito de sodio">
-                  <Checkbox size="small" checked={productFilter.includes("hipoclorito de sodio")} />
-                  HIPOCLORITO DE SODIO
-                </MenuItem>
-                <MenuItem value="a clorhidrico">
-                  <Checkbox size="small" checked={productFilter.includes("a clorhidrico")} />
-                  A CLORHIDRICO
-                </MenuItem>
-                <MenuItem value="cloruro ferrico">
-                  <Checkbox size="small" checked={productFilter.includes("cloruro ferrico")} />
-                  CLORURO FERRICO
-                </MenuItem>
-                <MenuItem value="calcio tur">
-                  <Checkbox size="small" checked={productFilter.includes("calcio tur")} />
-                  CALCIO TUR
-                </MenuItem>
-                <MenuItem value="calcio refi">
-                  <Checkbox size="small" checked={productFilter.includes("calcio refi")} />
-                  CALCIO REFI
-                </MenuItem>
-                <MenuItem value="a sulfurico diluido">
-                  <Checkbox size="small" checked={productFilter.includes("a sulfurico diluido")} />
-                  A SULFURICO DILUIDO
-                </MenuItem>
-                <MenuItem value="cloro">
-                  <Checkbox size="small" checked={productFilter.includes("cloro")} />
-                  CLORO
-                </MenuItem>
-              </Select>
-            </FormControl>
+          <FormControl size="small" sx={{ minWidth: 190 }}>
+            <InputLabel id="product-filter-label">Producto</InputLabel>
+            <Select
+              labelId="product-filter-label"
+              label="Producto"
+              multiple
+              value={productFilter}
+              onChange={(event) => {
+                const value = event.target.value;
+                setProductFilter(typeof value === "string" ? value.split(",") : value);
+                setPage(1);
+              }}
+              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todos los Productos")}
+            >
+              <MenuItem value="soda caustica">
+                <Checkbox size="small" checked={productFilter.includes("soda caustica")} />
+                SODA CAUSTICA
+              </MenuItem>
+              <MenuItem value="hipoclorito de sodio">
+                <Checkbox size="small" checked={productFilter.includes("hipoclorito de sodio")} />
+                HIPOCLORITO DE SODIO
+              </MenuItem>
+              <MenuItem value="a clorhidrico">
+                <Checkbox size="small" checked={productFilter.includes("a clorhidrico")} />
+                A CLORHIDRICO
+              </MenuItem>
+              <MenuItem value="cloruro ferrico">
+                <Checkbox size="small" checked={productFilter.includes("cloruro ferrico")} />
+                CLORURO FERRICO
+              </MenuItem>
+              <MenuItem value="calcio tur">
+                <Checkbox size="small" checked={productFilter.includes("calcio tur")} />
+                CALCIO TUR
+              </MenuItem>
+              <MenuItem value="calcio refi">
+                <Checkbox size="small" checked={productFilter.includes("calcio refi")} />
+                CALCIO REFI
+              </MenuItem>
+              <MenuItem value="a sulfurico diluido">
+                <Checkbox size="small" checked={productFilter.includes("a sulfurico diluido")} />
+                A SULFURICO DILUIDO
+              </MenuItem>
+              <MenuItem value="cloro">
+                <Checkbox size="small" checked={productFilter.includes("cloro")} />
+                CLORO
+              </MenuItem>
+            </Select>
+          </FormControl>
 
-            <FormControl size="small" sx={{ minWidth: 190 }}>
-              <InputLabel id="reservation-filter-label">Reserva</InputLabel>
-              <Select
-                labelId="reservation-filter-label"
-                label="Reserva"
-                multiple
-                value={reservationFilter}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setReservationFilter(typeof value === "string" ? value.split(",") : value);
-                  setPage(1);
-                }}
-                renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Reservas")}
-              >
-                <MenuItem value="con reserva">
-                  <Checkbox size="small" checked={reservationFilter.includes("con reserva")} />
-                  Con Reserva
-                </MenuItem>
-                <MenuItem value="sin reserva">
-                  <Checkbox size="small" checked={reservationFilter.includes("sin reserva")} />
-                  Sin Reserva
-                </MenuItem>
-              </Select>
-            </FormControl>
+          <FormControl size="small" sx={{ minWidth: 190 }}>
+            <InputLabel id="reservation-filter-label">Reserva</InputLabel>
+            <Select
+              labelId="reservation-filter-label"
+              label="Reserva"
+              multiple
+              value={reservationFilter}
+              onChange={(event) => {
+                const value = event.target.value;
+                setReservationFilter(typeof value === "string" ? value.split(",") : value);
+                setPage(1);
+              }}
+              renderValue={(selected) => (selected.length ? selected.join(", ") : "Todas las Reservas")}
+            >
+              <MenuItem value="con reserva">
+                <Checkbox size="small" checked={reservationFilter.includes("con reserva")} />
+                Con Reserva
+              </MenuItem>
+              <MenuItem value="sin reserva">
+                <Checkbox size="small" checked={reservationFilter.includes("sin reserva")} />
+                Sin Reserva
+              </MenuItem>
+            </Select>
+          </FormControl>
 
             <TextField
               size="small"
@@ -487,13 +443,13 @@ function DespachosPage() {
               {paginatedRows.map((row) => {
                 const reservaId = getReservaId(row.actNumber);
                 return (
-                  <TableRow key={row.actNumber} hover>
-                    <TableCell sx={{ fontWeight: 700 }}>{row.actNumber}</TableCell>
+                <TableRow key={row.actNumber} hover>
+                  <TableCell sx={{ fontWeight: 700 }}>{row.actNumber}</TableCell>
                     <TableCell sx={{ fontFamily: "monospace", fontSize: "0.875rem", minWidth: 140 }}>
                       {reservaId || "-"}
                     </TableCell>
-                    <TableCell>{row.deliveryDate || "-"}</TableCell>
-                    <TableCell>{row.deliveryTime || "-"}</TableCell>
+                  <TableCell>{row.deliveryDate || "-"}</TableCell>
+                  <TableCell>{row.deliveryTime || "-"}</TableCell>
                   <TableCell sx={{ fontFamily: "monospace", fontSize: "0.875rem" }}>{row.freightOrder || "-"}</TableCell>
                   <TableCell sx={{ maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={row.customerAddress || row.company}>
                     {row.customerAddress || row.company}
@@ -570,18 +526,6 @@ function DespachosPage() {
                         <BookmarkBorder fontSize="small" />
                       </IconButton>
                     </Tooltip>
-                    {getReservaId(row.actNumber) && (
-                      <Tooltip title="Ver bitácora de reserva" arrow placement="top">
-                        <IconButton
-                          size="small"
-                          color="primary"
-                          aria-label="ver bitácora"
-                          onClick={() => handleOpenBitacora(row.actNumber)}
-                        >
-                          <Timeline fontSize="small" />
-                        </IconButton>
-                      </Tooltip>
-                    )}
                   </TableCell>
                 </TableRow>
                 );
@@ -731,29 +675,12 @@ function DespachosPage() {
         </DialogActions>
       </Dialog>
 
-      {/* Modal de Bitácora */}
-      <Dialog open={bitacoraModalOpen} onClose={() => setBitacoraModalOpen(false)} maxWidth="md" fullWidth>
-        <DialogTitle sx={{ fontWeight: 700, pb: 1 }}>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Timeline sx={{ color: brandColors.oxyBlue }} />
-            <Typography variant="h6">Bitácora por Reserva {selectedReservaId}</Typography>
-          </Stack>
-        </DialogTitle>
-        <DialogContent>
-          <BitacoraTimeline eventos={getBitacoraByReservaId(selectedReservaId)} />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setBitacoraModalOpen(false)} variant="contained">
-            Cerrar
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Paper>
   );
 }
 
 // Componente BitacoraTimeline
-function BitacoraTimeline({ eventos }) {
+export function BitacoraTimeline({ eventos }) {
   const getIcon = (icono) => {
     switch (icono) {
       case "create":

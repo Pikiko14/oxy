@@ -44,7 +44,7 @@ export const documentosRows = [
   },
   {
     id: "DOC-002",
-    tipo: "Ticket de Pesado",
+    tipo: "Certificado",
     numero: "TP-98732",
     deliveryId: "DEL-843295",
     reservaId: "RES-001",
@@ -66,7 +66,7 @@ export const documentosRows = [
   },
   {
     id: "DOC-004",
-    tipo: "Ticket de Pesado",
+    tipo: "Certificado",
     numero: "TP-76543",
     deliveryId: "DEL-843301",
     reservaId: "RES-003",
@@ -98,8 +98,8 @@ function DocumentosPage() {
     const search = searchValue.trim().toLowerCase();
     return documentosRows
       .filter((row) => {
-        // Solo mostrar "Guía de despacho" y "Ticket de Pesado"
-        return row.tipo === "Guía de despacho" || row.tipo === "Ticket de Pesado";
+        // Solo mostrar "Guía de despacho" y "Certificado"
+        return row.tipo === "Guía de despacho" || row.tipo === "Certificado";
       })
       .filter((row) => {
         const rowTipo = row.tipo.toLowerCase();
@@ -120,7 +120,7 @@ function DocumentosPage() {
   const paginatedRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
   // Solo mostrar los dos tipos permitidos en el filtro
-  const uniqueTipos = ["Guía de despacho", "Ticket de Pesado"];
+  const uniqueTipos = ["Guía de despacho", "Certificado"];
 
   return (
     <Paper sx={{ p: 2, border: "1px solid", borderColor: "divider", boxShadow: "0px 12px 24px rgba(0, 46, 77, 0.08)" }}>

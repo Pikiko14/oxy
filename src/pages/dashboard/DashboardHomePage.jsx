@@ -893,28 +893,36 @@ function DashboardHomePage() {
       }
     });
 
-    // Convertir a array y ordenar por fecha
-    const datosPorFecha = Array.from(fechaMap.values())
-      .sort((a, b) => a.fecha - b.fecha);
+    // Asegurar que siempre se muestren todos los días del rango seleccionado,
+    // aunque no tengan datos (planned/completed = 0)
+    const datosPorFecha = [];
 
-    // Si no hay datos en el rango, generar días de la semana actual
-    if (datosPorFecha.length === 0 && startDate && endDate) {
-      const currentDate = new Date(startDate);
-      currentDate.setHours(0, 0, 0, 0);
-      const endDateObj = new Date(endDate);
-      endDateObj.setHours(23, 59, 59, 999);
+    if (startDate && endDate) {
+      const currentDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+      const endDateObj = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+
       while (currentDate <= endDateObj) {
         const fechaKey = formatDateToKey(currentDate);
         if (fechaKey) {
-          datosPorFecha.push({
-            fecha: new Date(currentDate),
-            fechaKey,
-            planned: 0,
-            completed: 0,
-          });
+          const existente = fechaMap.get(fechaKey);
+          if (existente) {
+            datosPorFecha.push(existente);
+          } else {
+            datosPorFecha.push({
+              fecha: new Date(currentDate),
+              fechaKey,
+              planned: 0,
+              completed: 0,
+            });
+          }
         }
         currentDate.setDate(currentDate.getDate() + 1);
       }
+    } else {
+      // Fallback: usar solo los días con datos si no hay rango definido
+      Array.from(fechaMap.values())
+        .sort((a, b) => a.fecha - b.fecha)
+        .forEach((item) => datosPorFecha.push(item));
     }
 
     // Formatear para el gráfico
@@ -925,7 +933,7 @@ function DashboardHomePage() {
       planned: item.planned, // Solo deliveries planificados
       completed: item.completed, // Solo deliveries completados
     }));
-  }, [chartFromDate, chartToDate]);
+  }, [chartFromDate, chartToDate, dispatchRows]);
 
   // Calcular deliveries por tipo de carga filtrados por fecha (usa fechas del gráfico de tipo de carga)
   const filteredDispatchesByLoadType = useMemo(() => {

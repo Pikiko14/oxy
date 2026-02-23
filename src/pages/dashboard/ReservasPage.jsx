@@ -56,9 +56,10 @@ import Description from "@mui/icons-material/Description";
 import Download from "@mui/icons-material/Download";
 import Send from "@mui/icons-material/Send";
 import Checklist from "@mui/icons-material/Checklist";
+import Timeline from "@mui/icons-material/Timeline";
 import { brandColors } from "../../theme";
 import { useNavigate } from "react-router-dom";
-import { dispatchRows } from "./DespachosPage";
+import { dispatchRows, BitacoraTimeline } from "./DespachosPage";
 import { documentosRows } from "./DocumentosPage";
 import ConsolidacionModal from "./ConsolidacionModal";
 
@@ -77,6 +78,11 @@ export const reservasRows = [
     conductor: "GEROLAMO GNETTI",
     vehiculo: "ABCD12",
     aprobadoIngresoSAC: true,
+    // Permitir más de un producto en el expandible
+    items: [
+      { producto: "SODA CAUSTICA", cantidad: "5,000 kg" },
+      { producto: "HIPOCLORITO DE SODIO", cantidad: "2,000 kg" },
+    ],
   },
   {
     id: "RES-002",
@@ -146,6 +152,20 @@ export const reservasRows = [
   },
   {
     id: "RES-007",
+    deliveryId: "DEL-843320",
+    cliente: "TRANSPORTES FEBRERO",
+    producto: "HIPOCLORITO DE SODIO",
+    cantidad: "26,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "08:30",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "MARTIN FERNANDEZ",
+    vehiculo: "FEB789",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-023",
     deliveryId: "DEL-999999",
     cliente: "EMPRESA TEST",
     producto: "HIPOCLORITO DE SODIO",
@@ -156,6 +176,212 @@ export const reservasRows = [
     tipo: "Descarga",
     conductor: "CARLOS TEST",
     vehiculo: "TEST99",
+  },
+  // Reservas adicionales para el 23/02/2026
+  {
+    id: "RES-008",
+    deliveryId: "DEL-843321",
+    cliente: "LOGISTICA ANDES",
+    producto: "SODA CAUSTICA",
+    cantidad: "20,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "07:45",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "RAUL SEPULVEDA",
+    vehiculo: "AND321",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-009",
+    deliveryId: "DEL-843322",
+    cliente: "TRANSPORTE LITORAL",
+    producto: "HIPOCLORITO DE SODIO",
+    cantidad: "18,500 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "09:15",
+    estado: "Pendiente",
+    tipo: "Descarga",
+    conductor: "CARLA ROJAS",
+    vehiculo: "LIT456",
+  },
+  {
+    id: "RES-010",
+    deliveryId: "DEL-843323",
+    cliente: "NORTE EXPRESS",
+    producto: "A CLORHIDRICO",
+    cantidad: "22,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "10:00",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "JORGE QUISPE",
+    vehiculo: "NOR789",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-011",
+    deliveryId: "DEL-843324",
+    cliente: "SUR LOGISTICS",
+    producto: "CLORURO FERRICO",
+    cantidad: "16,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "10:30",
+    estado: "Pendiente",
+    tipo: "Descarga",
+    conductor: "MARIO PEREZ",
+    vehiculo: "SUR111",
+  },
+  {
+    id: "RES-012",
+    deliveryId: "DEL-843325",
+    cliente: "RUTA METROPOLITANA",
+    producto: "SODA CAUSTICA",
+    cantidad: "24,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "11:15",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "VERONICA DIAZ",
+    vehiculo: "MET222",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-013",
+    deliveryId: "DEL-843326",
+    cliente: "ANDINA CARGAS",
+    producto: "HIPOCLORITO DE SODIO",
+    cantidad: "19,500 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "12:00",
+    estado: "Confirmada",
+    tipo: "Descarga",
+    conductor: "PABLO GARCIA",
+    vehiculo: "AND654",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-014",
+    deliveryId: "DEL-843327",
+    cliente: "PACIFICO TRANSPORTES",
+    producto: "A SULFURICO DILUIDO",
+    cantidad: "21,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "12:30",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "RODRIGO LARA",
+    vehiculo: "PAC777",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-015",
+    deliveryId: "DEL-843328",
+    cliente: "LOGISTICA AUSTRAL",
+    producto: "CLORO",
+    cantidad: "9,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "13:00",
+    estado: "Pendiente",
+    tipo: "Descarga",
+    conductor: "NICOLAS OYARZO",
+    vehiculo: "AUS888",
+  },
+  {
+    id: "RES-016",
+    deliveryId: "DEL-843329",
+    cliente: "CORDILLERA LOGISTICS",
+    producto: "SODA CAUSTICA",
+    cantidad: "23,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "13:30",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "ALEJANDRA MESA",
+    vehiculo: "COR999",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-017",
+    deliveryId: "DEL-843330",
+    cliente: "RUTA CENTRAL",
+    producto: "HIPOCLORITO DE SODIO",
+    cantidad: "17,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "14:00",
+    estado: "Pendiente",
+    tipo: "Descarga",
+    conductor: "SERGIO PAVEZ",
+    vehiculo: "RUT123",
+  },
+  {
+    id: "RES-018",
+    deliveryId: "DEL-843331",
+    cliente: "LOGISTICA INDUSTRIAL",
+    producto: "A CLORHIDRICO",
+    cantidad: "20,500 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "14:30",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "SOFIA CARRASCO",
+    vehiculo: "IND456",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-019",
+    deliveryId: "DEL-843332",
+    cliente: "TRANSPORTE MINERO",
+    producto: "CLORURO FERRICO",
+    cantidad: "18,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "15:00",
+    estado: "Confirmada",
+    tipo: "Descarga",
+    conductor: "DANIEL ROJAS",
+    vehiculo: "MIN741",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-020",
+    deliveryId: "DEL-843333",
+    cliente: "LOGISTICA BIOBIO",
+    producto: "SODA CAUSTICA",
+    cantidad: "19,000 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "15:30",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "PATRICIA ALVEAR",
+    vehiculo: "BIO258",
+    aprobadoIngresoSAC: true,
+  },
+  {
+    id: "RES-021",
+    deliveryId: "DEL-843334",
+    cliente: "RUTA COSTERA",
+    producto: "HIPOCLORITO DE SODIO",
+    cantidad: "16,800 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "16:00",
+    estado: "Pendiente",
+    tipo: "Descarga",
+    conductor: "IGNACIO SOTO",
+    vehiculo: "COS369",
+  },
+  {
+    id: "RES-022",
+    deliveryId: "DEL-843335",
+    cliente: "TRANSPORTES ANDINOS",
+    producto: "A SULFURICO DILUIDO",
+    cantidad: "23,500 kg",
+    fechaReserva: "2026-02-23",
+    horaReserva: "16:30",
+    estado: "Confirmada",
+    tipo: "Carga",
+    conductor: "MIGUEL HERRERA",
+    vehiculo: "AND852",
+    aprobadoIngresoSAC: true,
   },
 ];
 
@@ -182,6 +408,8 @@ function ReservasPage() {
   const [selectedReservaForDocumentos, setSelectedReservaForDocumentos] = useState(null);
   const [consolidacionModalOpen, setConsolidacionModalOpen] = useState(false);
   const [selectedReservaForConsolidacion, setSelectedReservaForConsolidacion] = useState(null);
+  const [bitacoraModalOpen, setBitacoraModalOpen] = useState(false);
+  const [selectedReservaId, setSelectedReservaId] = useState(null);
   const rowsPerPage = 8;
   const calendarRef = useRef(null);
 
@@ -229,6 +457,55 @@ function ReservasPage() {
       });
   }, [reservasRows, refreshKey]);
 
+  // Función para obtener la bitácora de una reserva
+  const getBitacoraByReservaId = (reservaId) => {
+    if (!reservaId) return [];
+    // Datos mock de bitácora - en producción vendría del backend
+    const bitacoraMock = [
+      {
+        id: "BIT-001",
+        tipo: "creacion",
+        titulo: "Reserva creada",
+        descripcion: `Reserva ${reservaId} creada en el sistema`,
+        usuario: "Operador OXY",
+        fecha: "2025-03-15 10:30:25",
+        icono: "create",
+        color: brandColors.oxyBlue,
+      },
+      {
+        id: "BIT-002",
+        tipo: "asignacion",
+        titulo: "Delivery asignado",
+        descripcion: `Delivery asignado a la reserva ${reservaId}`,
+        usuario: "Supervisor",
+        fecha: "2025-03-15 11:15:42",
+        icono: "assignment",
+        color: brandColors.oceanAqua,
+      },
+      {
+        id: "BIT-003",
+        tipo: "aprobacion",
+        titulo: "Aprobada para ingreso SAC",
+        descripcion: `Reserva ${reservaId} aprobada para ingreso desde SAC`,
+        usuario: "Admin Sistema",
+        fecha: "2025-03-15 14:20:10",
+        icono: "check",
+        color: brandColors.forestGreen,
+      },
+      {
+        id: "BIT-004",
+        tipo: "estado",
+        titulo: "Estado cambiado",
+        descripcion: `Estado de la reserva ${reservaId} cambiado a 'Confirmada'`,
+        usuario: "Operador OXY",
+        fecha: "2025-03-15 15:45:33",
+        icono: "info",
+        color: brandColors.dayBlue,
+      },
+    ];
+    return bitacoraMock;
+  };
+
   const handleToggleRow = (reservaId) => {
     const newExpanded = new Set(expandedRows);
     if (newExpanded.has(reservaId)) {
@@ -237,6 +514,13 @@ function ReservasPage() {
       newExpanded.add(reservaId);
     }
     setExpandedRows(newExpanded);
+  };
+
+  const handleOpenBitacora = (reservaId) => {
+    if (reservaId) {
+      setSelectedReservaId(reservaId);
+      setBitacoraModalOpen(true);
+    }
   };
 
   // Función para calcular días sin delivery
@@ -928,6 +1212,16 @@ function ReservasPage() {
                               <Checklist fontSize="small" />
                             </IconButton>
                           </Tooltip>
+                          <Tooltip title="Ver bitácora de reserva" arrow placement="top">
+                            <IconButton
+                              size="small"
+                              color="primary"
+                              aria-label="ver bitácora"
+                              onClick={() => handleOpenBitacora(row.id)}
+                            >
+                              <Timeline fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
                           {row.estado !== "Anulada" && (
                             <Tooltip title="Anular reserva" arrow placement="top">
                               <IconButton size="small" color="error">
@@ -941,24 +1235,56 @@ function ReservasPage() {
                         <TableRow>
                           <TableCell colSpan={10} sx={{ py: 2, bgcolor: "grey.50" }}>
                             <Box sx={{ pl: 4 }}>
-                              <Stack direction="row" spacing={4} alignItems="flex-start">
+                              {Array.isArray(row.items) && row.items.length > 0 ? (
                                 <Box>
-                                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, display: "block", mb: 0.5 }}>
-                                    Producto
+                                  <Typography
+                                    variant="caption"
+                                    color="text.secondary"
+                                    sx={{ fontWeight: 600, display: "block", mb: 0.5 }}
+                                  >
+                                    Ítems de la reserva
                                   </Typography>
-                                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                                    {row.producto || "-"}
-                                  </Typography>
+                                  <Stack spacing={0.5}>
+                                    {row.items.map((item, index) => (
+                                      <Stack key={index} direction="row" spacing={2}>
+                                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                                          {item.producto}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                          {item.cantidad}
+                                        </Typography>
+                                      </Stack>
+                                    ))}
+                                  </Stack>
                                 </Box>
-                                <Box>
-                                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, display: "block", mb: 0.5 }}>
-                                    Cantidad
-                                  </Typography>
-                                  <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                                    {row.cantidad || "-"}
-                                  </Typography>
-                                </Box>
-                              </Stack>
+                              ) : (
+                                <Stack direction="row" spacing={4} alignItems="flex-start">
+                                  <Box>
+                                    <Typography
+                                      variant="caption"
+                                      color="text.secondary"
+                                      sx={{ fontWeight: 600, display: "block", mb: 0.5 }}
+                                    >
+                                      Producto
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                                      {row.producto || "-"}
+                                    </Typography>
+                                  </Box>
+                                  <Box>
+                                    <Typography
+                                      variant="caption"
+                                      color="text.secondary"
+                                      sx={{ fontWeight: 600, display: "block", mb: 0.5 }}
+                                    >
+                                      Cantidad
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                                      {row.cantidad || "-"}
+                                    </Typography>
+                                  </Box>
+                                </Stack>
+                              )}
                             </Box>
                           </TableCell>
                         </TableRow>
@@ -1380,6 +1706,24 @@ function ReservasPage() {
           }}
           reserva={selectedReservaForConsolidacion}
         />
+
+        {/* Modal de Bitácora */}
+        <Dialog open={bitacoraModalOpen} onClose={() => setBitacoraModalOpen(false)} maxWidth="md" fullWidth>
+          <DialogTitle sx={{ fontWeight: 700, pb: 1 }}>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Timeline sx={{ color: brandColors.oxyBlue }} />
+              <Typography variant="h6">Bitácora por Reserva {selectedReservaId}</Typography>
+            </Stack>
+          </DialogTitle>
+          <DialogContent>
+            <BitacoraTimeline eventos={getBitacoraByReservaId(selectedReservaId)} />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setBitacoraModalOpen(false)} variant="contained">
+              Cerrar
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Stack>
     </Paper>
   );
